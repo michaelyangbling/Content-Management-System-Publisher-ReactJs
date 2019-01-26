@@ -1,20 +1,85 @@
 import React from 'react';
-import CourseRow from './CourseRow';
+import CourseRow from '../components/CourseRow';
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
 export default class CourseTable extends React.Component{
     constructor(props){
-        super()
+        super(props)
+        var state={};var course
+        for(course in this.props.courses){
+        state[String(this.props.courses[course].id)]=true
+        }
+        this.state=state
+        this.handleRowsMount=this.handleRowsMount.bind(this)
     }
+    
+
+    handleRowsMount(id){
+        this.setState({[id]: false})
+    }
+
     render(){
         return (
-            <table className="table">
-            <tbody>
-            { this.props.courses.map((course) =>
-                <CourseRow course={course}/>
-            )}
-            </tbody>
+            <div className="table-responsive">
+            <table className="table table-hover">
+                <thead className="thead-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th>Owner</th>
+                        <th>Last modified Time</th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                {/* { this.props.courses.map((course) =>
+                <CourseRow course={course} removeMe={this.handleRowsMount} key={course.id}/>)} */}
+                { this.props.courses.map((course) =>
+
+                    {
+                        if (this.state[String(course.id)]===true){
+                            //console.log(this.state[String(course.id)])
+                            return <CourseRow course={course} removeMe={this.handleRowsMount} id={course.id} key={course.id}/>}
+                        else
+                            return null
+                    }//reatc require must have a key, even not used
+                )}
+                </tbody>
             </table>
+            </div>
         )
 
     }
 }
+
+// <div class="table-responsive">
+//   <table class="table table-hover">
+//     <thead class="thead-dark">
+//         <tr>
+//             <th>Title</th>
+//             <th>Owner</th>
+//             <th>Last modified Time</th>
+//             <th>&nbsp</th>
+//         </tr>
+
+//     </thead>
+
+//     <tbody>
+//         <tr 
+//         onclick="location.href='../courseEditor/courseEditor.template.client.html'" style="cursor:pointer">
+//             <td>Title Exmaple: cs 5610 </td>
+//             <td>Owner Example: me</td>
+//             <td>Last modified Time Example: 6:45 PM</td>
+//             <td>Example: Delete</td>
+//         </tr>
+
+//         <tr 
+//         onclick="location.href='../courseEditor/courseEditor.template.client.html'" style="cursor:pointer">
+//             <td>Title Exmaple2: cs 5610 </td>
+//             <td>Owner Example2: me</td>
+//             <td>Last modified Time Example2: 6:45 PM</td>
+//             <td>Example2: Delete</td>
+//         </tr>
+//     </tbody>
+//   </table>
+// </div>
