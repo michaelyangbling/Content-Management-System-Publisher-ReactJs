@@ -12,13 +12,24 @@ import CourseService from '../services/CourseService'
 //onClick
 class WhiteBoard extends React.Component{
   componentDidMount() {
-    this.findAllCourses().then(res=>this.setState({[courses]:res}));
+    this.courseService.findAllCourses().then(res=>this.setState({courses:res}));
   }
     constructor(){
         super(props)
         this.courseService=new CourseService()
-        //this.state={courses: []}
-        this.courses=require('./test.json')}
+        this.state={courses: []}
+        //this.courses=require('./test.json')
+        this.inputChange=this.inputChanged.bind(this)
+        this.createNewCourse=this.createNewCourse.bind(this)
+      }
+    inputChanged(event){
+        this.setState({input: event.target.value})
+    }
+
+    createNewCourse(event){
+        
+        this.courseService.createCourse().then(res=>this.setState({courses: })
+    }
     render(){ 
       return(
       //Router  contain at most one node, Link/Route should be in Router, so make Router the root
@@ -57,10 +68,11 @@ class WhiteBoard extends React.Component{
                <a className="nav-link" href="#">Profile</a>
              </li>
              <li className="nav-item active" >
-               <input placeholder="New Course Title" className="form-control" id="createNewCourse"/>
+               <input placeholder="New Course Title" className="form-control" id="createNewCourse"
+               onChange={this.inputChanged} value={this.state.input}/>
              </li>
              <li className="nav-item active" >
-               <span className="fa-stack btn red"> 
+               <span className="fa-stack btn red" onClick={this.createNewCourse}> 
                   <i className="fa fa-circle fa-stack-2x"></i>
                   <i className="fa fa-plus fa-stack-1x fa-inverse"></i>
                </span>
@@ -69,14 +81,14 @@ class WhiteBoard extends React.Component{
         </div>
       
         </nav>
-      <span className="fa-stack wd-bottom-right btn">
+      <span className="fa-stack wd-bottom-right btn" onClick={this.createNewCourse}>
       <i className="fa fa-circle fa-stack-2x" ></i>
       <i className="fa fa-plus fa-stack-1x fa-inverse"></i>
       </span>
       <Route path="/course/table"
-                  render={() => <CourseTable courses={this.courses}/>}/>
+                  render={() => <CourseTable courses={this.state.courses}/>}/>
       <Route path="/course/grid"
-                  render={() => <CourseTable courses={this.courses}/>}/>
+                  render={() => <CourseTable courses={this.state.courses}/>}/>
       {/* <Router>
       <div>
           <Route path="/course/table"
