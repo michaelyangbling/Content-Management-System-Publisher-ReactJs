@@ -7,11 +7,17 @@ import '../../node_modules/jquery/dist/jquery.min.js'
 import '../../node_modules/font-awesome/css/font-awesome.css';
 import './courseList.style.client.css';
 import CourseTable from './CourseTable'
+import CourseService from '../services/CourseService'
 //install router: npm i react-router-dom --save  fails but work, npm install --save react-router-dom fails
 //onClick
 class WhiteBoard extends React.Component{
+  componentDidMount() {
+    this.findAllCourses().then(res=>this.setState({[courses]:res}));
+  }
     constructor(){
-        super()
+        super(props)
+        this.courseService=new CourseService()
+        //this.state={courses: []}
         this.courses=require('./test.json')}
     render(){ 
       return(
