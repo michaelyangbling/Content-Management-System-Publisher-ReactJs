@@ -1,10 +1,10 @@
 //WhiteBoard Container
 import React from 'react';
 import {BrowserRouter as Router, Route, Link}  from 'react-router-dom'
-import '../../node_modules/bootstrap/dist/css/bootstrap.css';
-import '../../node_modules/bootstrap/dist/js/bootstrap.min.js'
-import '../../node_modules/jquery/dist/jquery.min.js'
-import '../../node_modules/font-awesome/css/font-awesome.css';
+//import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+// import '../../node_modules/bootstrap/dist/js/bootstrap.min.js'
+// import '../../node_modules/jquery/dist/jquery.min.js'
+// import '../../node_modules/font-awesome/css/font-awesome.css';
 import './courseList.style.client.css';
 import CourseTable from './CourseTable'
 import CourseGrid from './CourseGrid'
@@ -26,13 +26,13 @@ class WhiteBoard extends React.Component{
       return(
       //Router  contain at most one node, Link/Route should be in Router, so make Router the root
         <Router>
-        <div style={{paddingTop: 60 + "px"}}>
+        <div style={{paddingTop: 80 + "px"}}>
         <nav className="navbar navbar-expand-sm fixed-top navbar-dark bg-info"> 
         <a className="navbar-brand" href="#">
          Course Manager</a>
-         <Link to="/course/table"><b>Table</b></Link>
-          <i> Or </i>
-          <Link to="/course/grid"><b>Grid</b></Link>
+         <Link to="/course/table" style={{color:"white"}}><b>Table-View&nbsp;&nbsp;</b></Link>
+          <i></i>
+          <Link to="/course/grid" style={{color:"white"}}><b>Grid-View    </b></Link>
         {/* <Router>
           <div>
           <Link to="/course/table"><b>Table</b></Link>
@@ -72,10 +72,7 @@ class WhiteBoard extends React.Component{
         </div>
       
         </nav>
-      <span className="fa-stack wd-bottom-right btn">
-      <i className="fa fa-circle fa-stack-2x" ></i>
-      <i className="fa fa-plus fa-stack-1x fa-inverse"></i>
-      </span>
+      
       <Route path="/course/table"
                   render={() => <CourseTable courses={this.state.courses} deleteCourse={this.deleteCourse}/>}/>
       <Route path="/course/grid"
@@ -88,6 +85,10 @@ class WhiteBoard extends React.Component{
                   render={() => <CourseTable courses={this.courses}/>}/>
       </div>
       </Router> */}
+      <span className="fa-stack wd-bottom-right btn">
+      <i className="fa fa-circle fa-stack-2x" ></i>
+      <i className="fa fa-plus fa-stack-1x fa-inverse"></i>
+      </span>
       </div>
       </Router>
         )

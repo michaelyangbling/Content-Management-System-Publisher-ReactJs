@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
+import '../node_modules/jquery/dist/jquery.min.js'
+import '../node_modules/font-awesome/css/font-awesome.css';
+//node_modules files and coded css can be propogated to children modules...
 import WhiteBoard from "./containers/WhiteBoard";
 import * as serviceWorker from './serviceWorker';
 //npm install bootstrap --save fails

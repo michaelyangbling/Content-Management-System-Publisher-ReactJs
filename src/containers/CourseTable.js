@@ -1,6 +1,6 @@
 import React from 'react';
 import CourseRow from '../components/CourseRow';
-import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+//import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
 export default class CourseTable extends React.Component{
     constructor(props){
