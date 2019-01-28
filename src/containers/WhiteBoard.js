@@ -7,12 +7,21 @@ import '../../node_modules/jquery/dist/jquery.min.js'
 import '../../node_modules/font-awesome/css/font-awesome.css';
 import './courseList.style.client.css';
 import CourseTable from './CourseTable'
+import CourseGrid from './CourseGrid'
+import CourseService from '../services/CourseService'
 //install router: npm i react-router-dom --save  fails but work, npm install --save react-router-dom fails
 //onClick
 class WhiteBoard extends React.Component{
     constructor(){
         super()
-        this.courses=require('./test.json')}
+        this.courseService = new CourseService()
+        this.state={courses: this.courseService.findAllCourses()}
+        this.deleteCourse=this.deleteCourse.bind(this)
+    }
+
+    deleteCourse(course){
+      this.setState({courses: this.courseService.deleteCourse(course)})
+    }
     render(){ 
       return(
       //Router  contain at most one node, Link/Route should be in Router, so make Router the root
@@ -68,9 +77,9 @@ class WhiteBoard extends React.Component{
       <i className="fa fa-plus fa-stack-1x fa-inverse"></i>
       </span>
       <Route path="/course/table"
-                  render={() => <CourseTable courses={this.courses}/>}/>
+                  render={() => <CourseTable courses={this.state.courses} deleteCourse={this.deleteCourse}/>}/>
       <Route path="/course/grid"
-                  render={() => <CourseTable courses={this.courses}/>}/>
+                  render={() => <CourseGrid courses={this.state.courses} deleteCourse={this.deleteCourse}/>}/>
       {/* <Router>
       <div>
           <Route path="/course/table"

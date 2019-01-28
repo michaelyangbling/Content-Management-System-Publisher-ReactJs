@@ -5,18 +5,18 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 export default class CourseTable extends React.Component{
     constructor(props){
         super(props)
-        var state={};var course
-        for(course in this.props.courses){
-        state[String(this.props.courses[course].id)]=true
-        }
-        this.state=state
-        this.handleRowsMount=this.handleRowsMount.bind(this)
+        // var state={};var course
+        // for(course in this.props.courses){
+        // state[String(this.props.courses[course].id)]=true
+        // }
+        // this.state=state// initial state
+        // this.handleRowsMount=this.handleRowsMount.bind(this)
     }
     
 
-    handleRowsMount(id){
-        this.setState({[id]: false})
-    }
+    // handleRowsMount(id){
+    //     this.setState({[id]: false})
+    // }
 
     render(){
         return (
@@ -36,14 +36,9 @@ export default class CourseTable extends React.Component{
                 <CourseRow course={course} removeMe={this.handleRowsMount} key={course.id}/>)} */}
                 { this.props.courses.map((course) =>
 
-                    {
-                        if (this.state[String(course.id)]===true){
-                            //console.log(this.state[String(course.id)])
-                            return <CourseRow course={course} removeMe={this.handleRowsMount} id={course.id} key={course.id}/>}
-                        else
-                            return null
-                    }//reatc require must have a key, even not used
-                )}
+                     <CourseRow course={course} key={course.id} deleteCourse={this.props.deleteCourse}/>)
+                    //reatc require must have a key, even not used; use whiteboard state instead of courseTable state
+                }
                 </tbody>
             </table>
             </div>
