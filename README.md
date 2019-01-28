@@ -1,4 +1,4 @@
-https://zhongheng-yang-react.herokuapp.com/course/table
+https://zhongheng-yang-react.herokuapp.com/course/grid
 
 React web application, now support getting and deleting courses in frontEnd, js service not yet connected to back end
 MERN Stack in branch development, 
