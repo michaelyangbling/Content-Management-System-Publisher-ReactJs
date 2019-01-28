@@ -8,6 +8,10 @@ export default class CourseService{
     findAllCourses(){ //arrow function bind this to original scope
         return this.courses
     }
+    findCourseById = courseId =>
+    this.course = this.courses.find(
+      course => course.id === courseId
+    )
 
     deleteCourse(course){
         this.courses=this.courses.filter( x => x.id!==course.id)

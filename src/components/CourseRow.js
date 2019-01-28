@@ -15,7 +15,7 @@ export default class CourseRow extends Component{
         return  (
                 <tr>
                 <td>
-                    <Link to={`/course/edit/${this.props.course.id}`}>
+                    <Link to={`/editCourse/${this.props.course.id}`}>
                         {this.props.course.title}
                     </Link>
                 </td>
