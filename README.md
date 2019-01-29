@@ -3,8 +3,9 @@ https://zhongheng-yang-react.herokuapp.com/course/grid
 React web application, now support getting and deleting courses in frontEnd, js service not yet connected to back end
 MERN Stack in branch development, 
 
+Selected module will change the color and show respective lessons belonging to that module
 
-
+courses->modules->lessons->topics, latter part need previous one to exist
 
 
 
