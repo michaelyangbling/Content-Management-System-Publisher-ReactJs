@@ -10,13 +10,11 @@ export default class ModuleList extends Component{    constructor(props){
             
             <ul className="nav nav-pills">
 
-                <li className="nav-item">
-                {this.props.modules.map((module, index) =>(<div>
+                {this.props.modules.map((module, index) =>(
                 <ModuleListItem module={module} index={index} selectedIndex={this.props.index}
-                selectModule={this.props.selectModule} /> <br/></div>)
+                selectModule={this.props.selectModule} /> )
                 )}
 
-                </li>
             
             </ul>
             /* index to get rid of key warning */

@@ -1,32 +1,27 @@
 import React,{Component} from 'react'
 import Tab from './Tab.js'
+import TopicPills from './TopicPills'
 export default class LessonTabs extends Component{
-    static id=require('shortid')
+    constructor(props){
+        super(props)
+        if (this.props.lessons.length>0)
+          this.state={lesson: this.props.lessons[0], index: 0}
+        else
+          this.state={index: 0}
+    }
+    selectLesson= (lesson, index)=>this.setState({lesson: lesson, index: index})
     render(){
-
-        constructor(props){
-            super(props)
-            if (this.props.lessons.length>0)
-              this.state={topic: this.props.lessons.topic[0], index: 0}
-            else
-              this.state={course: this.course, index: 0}
-        }
         return (
+          <div>
           <ul className="nav nav-tabs">
-            <li className="nav-item">
             {this.props.lessons.map(
-                lesson=><Tab key={LessonTabs.id.generate()} lesson={lesson}/> 
+                lesson=><Tab lesson={lesson} selectLesson={this.selectLesson} index={this.state.index}/> 
                 )}
-            </li>
           </ul>
 
-            <ul className="nav nav-tabs">
-            <li className="nav-item">
-            {this.props.lessons.map(
-                lesson=><Tab key={LessonTabs.id.generate()} lesson={lesson}/> 
-                )}
-            </li>
-            </ul>
+            
+            {(this.props.lessons.length>0)?<TopicPills topics={this.state.lesson.topics}/> : null}
+            </div>
 
 
         )

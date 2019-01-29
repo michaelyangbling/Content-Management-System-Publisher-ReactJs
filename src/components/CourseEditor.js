@@ -21,7 +21,9 @@ export default class CourseEditor extends Component{
           
     }
 
-    selectModule= (module, index)=>this.setState({module: module, index: index})
+    selectModule= (module, index)=>this.setState({module: module, index: index}) 
+    // index for changecolor of selected module
+    // module for showing cur module's content
     //how would deleting etc. affect these...
     render(){
         return (

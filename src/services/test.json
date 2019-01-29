@@ -7,7 +7,56 @@
           "title": "week 1",
           "lessons": [
             {
-              "title": "HTML",
+              "title": "lesson1",
+              "topics": [
+                {
+                  "title": "topic1",
+                  "widgets": [
+                    {
+                      "type": "HEADING",
+                      "size": 1,
+                      "text": "The Document Object Model"
+                    },
+                    {
+                      "type": "PARAGRAPH",
+                      "text": "This topic introduces the DOM"
+                    },
+                    {
+                      "type": "LIST",
+                      "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                    },
+                    {
+                      "type": "IMAGE",
+                      "src": "https://picsum.photos/200"
+                    },
+                    {
+                      "type": "LINK",
+                      "title": "The DOM",
+                      "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
+                    }
+                  ]
+                },
+                {
+                  "title": "topic2",
+                  "widgets": []
+                },
+                {
+                  "title": "topic3",
+                  "widgets": []
+                }
+              ]
+            },
+            {
+              "title": "lesson2",
+              "topics": []
+            }
+          ]
+        },
+        {
+          "title": "Week 2",
+          "lessons": [
+            {
+              "title": "Lesson: code easy",
               "topics": [
                 {
                   "title": "DOM",
@@ -37,23 +86,78 @@
                   ]
                 },
                 {
-                  "title": "Tags",
+                  "title": "blabla",
                   "widgets": []
                 },
                 {
-                  "title": "Attributes",
+                  "title": "testTopic",
                   "widgets": []
                 }
               ]
             },
             {
-              "title": "CSS",
+              "title": "Lesson: code quick",
+              "topics": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "888",
+      "title": "CStestTTT",
+      "modules": [
+        {
+          "title": "module 1",
+          "lessons": [
+            {
+              "title": "Lesson: code easy",
+              "topics": [
+                {
+                  "title": "DOM",
+                  "widgets": [
+                    {
+                      "type": "HEADING",
+                      "size": 1,
+                      "text": "The Document Object Model"
+                    },
+                    {
+                      "type": "PARAGRAPH",
+                      "text": "This topic introduces the DOM"
+                    },
+                    {
+                      "type": "LIST",
+                      "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                    },
+                    {
+                      "type": "IMAGE",
+                      "src": "https://picsum.photos/200"
+                    },
+                    {
+                      "type": "LINK",
+                      "title": "The DOM",
+                      "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
+                    }
+                  ]
+                },
+                {
+                  "title": "blabla",
+                  "widgets": []
+                },
+                {
+                  "title": "testTopic",
+                  "widgets": []
+                }
+              ]
+            },
+            {
+              "title": "Lesson: code quick",
               "topics": []
             }
           ]
         },
         {
-          "title": "Week 2",
+          "title": "module 2",
           "lessons": []
         }
       ]
