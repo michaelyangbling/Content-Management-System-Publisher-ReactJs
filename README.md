@@ -7,6 +7,7 @@ So does selected lesson ...
 
 courses->modules->lessons->topics, latter part need previous one to exist
 
+JUMP TO FIRST MODULE AFTER DELETING
 
 
 

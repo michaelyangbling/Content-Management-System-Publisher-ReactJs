@@ -7,6 +7,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../../node_modules/bootstrap/dist/js/bootstrap.min.js'
 import '../../node_modules/jquery/dist/jquery.min.js'
 import '../../node_modules/font-awesome/css/font-awesome.css';
+import {Link} from 'react-router-dom'
 export default class CourseEditor extends Component{ 
     // to generate index
     
@@ -37,12 +38,13 @@ export default class CourseEditor extends Component{
     render(){
         return (
             <div>
-            <h1>{this.state.course.title}</h1>
             <div className="row">
                 <div className="col-sm-2">
-                <ModuleList modules={this.state.course.modules} courseId={this.state.course.id}
-                            index={this.state.index} selectModule={this.selectModule}
-                            deleteModule={this.deleteModule}/>
+                    <h3>{this.state.course.title} <Link to="/course/table">Courses</Link></h3>
+
+                    <ModuleList modules={this.state.course.modules} courseId={this.state.course.id}
+                                index={this.state.index} selectModule={this.selectModule}
+                                deleteModule={this.deleteModule}/>
                 </div>
             <div className="col-sm-10">
                 {(this.course.modules.length>0)?<LessonTabs lessons={this.state.module.lessons}/> : null}

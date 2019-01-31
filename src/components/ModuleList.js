@@ -33,7 +33,7 @@ export default class ModuleList extends Component{
                 </ul>
                 <input placeholder="new module title" className="form-control" onChange={this.inputChanged}/>
                 <div style={{margin:"3px"}}>
-                <button className="btn-success btn form-control"  onClick={this.createModule}>
+                <button className="btn-dark btn form-control"  onClick={this.createModule}>
                     {/*Add Module/Week &nbsp;*/}
                     <i className="fa fa-plus fa-2x"></i>
                 </button>
