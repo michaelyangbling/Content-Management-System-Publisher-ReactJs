@@ -5,10 +5,22 @@ export default class CourseService{
         this.findAllCourses=this.findAllCourses.bind(this)
         this.deleteCourse=this.deleteCourse.bind(this)
     }
+
+    addModule=(input, courseId)=>{
+        //server update
+        this.findCourseById(courseId).modules.push({title: input, lessons: []})
+    }
+
+    deleteModule=(courseId, module, moduleIndex)=>{
+        //server update using courseId
+        module.splice(moduleIndex, 1)
+    }
+
+
     findAllCourses(){ //arrow function bind this to original scope
         return this.courses
     }
-    findCourseById = courseId =>
+    findCourseById = courseId => //can only in client?
     this.course = this.courses.find(
       course => course.id === courseId
     )

@@ -14,17 +14,24 @@ export default class ModuleItemList extends Component{
         this.props.selectModule(this.props.module, this.props.index)
 
     }
+    deleteModule=()=>{
+        this.props.deleteModule(this.props.index)
+
+    }
+
+
     render(){
         // console.log(this.props.index,this.btn)
         return(
             <li className="nav-item">
-            <a onClick={this.selectModule} 
-            className={this.props.index===this.props.selectedIndex ? "nav-link "+ "btn "+"btn-warning" : "nav-link "+ "btn "+"btn-success"} 
-            style={{margin:"10px",padding:"10px"}}>
-            <div>{this.props.module.title} </div>&nbsp;
-            {/* {this.props.index===this.props.selectedIndex? <div>selected</div> : null} */}
-            <i className="fa fa-times fa-2x"></i>
-            </a>
+                <a onClick={this.selectModule}
+                className={this.props.index===this.props.selectedIndex ? "nav-link "+ "btn "+"btn-warning ": "nav-link "+ "btn "+"btn-success "}
+                   style={{margin:"1px",padding:"8px"}}>
+                    {this.props.module.title}
+                {/* {this.props.index===this.props.selectedIndex? <div>selected</div> : null} */}
+
+                </a>
+                <i onClick={this.deleteModule} className="form-control btn fa fa-times fa-2x float-right"></i>
             </li>
         )
     }

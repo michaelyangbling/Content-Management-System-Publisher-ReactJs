@@ -4,6 +4,8 @@ import TopicPills from './TopicPills'
 export default class LessonTabs extends Component{
     constructor(props){
         super(props)
+
+        //to select lesson
         if (this.props.lessons.length>0)
           this.state={lesson: this.props.lessons[0], index: 0}
         else
@@ -12,7 +14,7 @@ export default class LessonTabs extends Component{
     // https://stackoverflow.com/questions/48226268/calling-setstate-in-react-from-render-method
     selectLesson= (lesson, index)=>this.setState({lesson: lesson, index: index})
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps) { //seems hard to avoid this? to "re-inherit" module
         if (nextProps.lessons.length>0)
           this.setState({lesson: nextProps.lessons[0], index: 0})
         else
