@@ -14,7 +14,7 @@ export default class ModuleList extends Component{
 
     createModule=()=> {
         this.courseService.addModule(this.input, this.props.courseId);
-        this.setState({}) //just make it re-render
+        this.props.selectModule(this.props.modules[this.props.modules.length-1], this.props.modules.length-1) //just make it re-render
     }
     // We don’t recommend using indexes for keys if the order of items may change. 
     render(){
@@ -33,7 +33,7 @@ export default class ModuleList extends Component{
                 </ul>
                 <input placeholder="new module title" className="form-control" onChange={this.inputChanged}/>
                 <div style={{margin:"3px"}}>
-                <button className="btn-dark btn form-control"  onClick={this.createModule}>
+                <button className="btn-primary btn form-control"  onClick={this.createModule}>
                     {/*Add Module/Week &nbsp;*/}
                     <i className="fa fa-plus fa-2x"></i>
                 </button>

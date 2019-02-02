@@ -4,6 +4,7 @@ import TopicPills from './TopicPills'
 import CourserService from '../services/CourseService'
 export default class LessonTabs extends Component{
     constructor(props){
+        console.log("remap lessontabs")
         super(props)
         //to select lesson
         if (this.props.lessons.length>0)
@@ -30,7 +31,8 @@ export default class LessonTabs extends Component{
 
     createLesson=()=> {
         this.courseService.addLesson(this.input, this.props.courseId, this.props.moduleIndex);
-        this.setState({}) //just make it re-render
+        this.selectLesson(this.props.lessons[this.props.lessons.length-1], this.props.lessons.length-1)
+        //this.setState({}) //just make it re-render
     }
     componentWillReceiveProps(nextProps) { //seems hard to avoid this? to "re-inherit" module
         if (nextProps.lessons.length>0)
@@ -52,7 +54,7 @@ export default class LessonTabs extends Component{
                   <div style={{margin:"3px"}}>
                       {/*//onChange is triggered on render?*/}
                       <input style={{margin:"1px"}} placeholder="new lesson title" className="form-control" onChange={this.inputChanged}/>
-                      <button className="btn-dark btn form-control"  onClick={this.createLesson}>
+                      <button className="btn-info btn form-control"  onClick={this.createLesson}>
                           {/*Add Module/Week &nbsp;*/}
                           <i className="fa fa-plus fa-2x"></i>
                       </button>
@@ -61,7 +63,7 @@ export default class LessonTabs extends Component{
 
 
 
-              {(this.props.lessons.length>0)?<TopicPills topics={this.state.lesson.topics}/> : null}
+              {(this.props.lessons.length>0)?<TopicPills topics={this.state.lesson.topics} courseId={this.props.courseId} moduleIndex={this.props.moduleIndex}/> : null}
             </div>
 
 

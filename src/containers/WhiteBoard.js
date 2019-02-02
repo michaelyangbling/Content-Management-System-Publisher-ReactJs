@@ -29,7 +29,7 @@ class WhiteBoard extends React.Component{
       //Router  contain at most one node, Link/Route should be in Router, so make Router the root
         <Router>
           <div className="container-fluid">
-            <Route path="/editCourse/:id" render={({match})=><CourseEditor courseId={match.params.id}/>}
+            <Route path="/editCourse/:id" render={({match})=><CourseEditor courseId={match.params.id}/>} //would re-construct an instance?
             />
 
             {/* nav bar and add icon on bottom right */}

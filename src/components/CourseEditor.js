@@ -13,6 +13,7 @@ export default class CourseEditor extends Component{
     
     constructor(props){
         super(props)
+        console.log("remap courseEditor")
         this.courseService=new CourseService()
         this.course=this.courseService.findCourseById(this.props.courseId)
         if (this.course.modules.length>0)

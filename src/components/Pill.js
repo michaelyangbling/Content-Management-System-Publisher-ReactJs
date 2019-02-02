@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 export default class Pill extends Component{
     constructor(props){
+        console.log("remap pill")
         super(props)
     }
     render(){
