@@ -13,7 +13,7 @@ export default class CourseEditor extends Component{
     
     constructor(props){
         super(props)
-        console.log("remap courseEditor")
+        //console.log("remap courseEditor")
         this.courseService=new CourseService()
         this.course=this.courseService.findCourseById(this.props.courseId)
         if (this.course.modules.length>0)
@@ -40,7 +40,7 @@ export default class CourseEditor extends Component{
         return (
             <div>
             <div className="row">
-                <div className="col-sm-2">
+                <div className="col-sm-2" style={{padding: "5px"}}>
                     <h3>{this.state.course.title} <Link to="/course/table">Courses</Link></h3>
 
                     <ModuleList modules={this.state.course.modules} courseId={this.state.course.id}

@@ -12,6 +12,8 @@ export default class ModuleList extends Component{
         this.input=event.target.value
     }
 
+
+
     createModule=()=> {
         this.courseService.addModule(this.input, this.props.courseId);
         this.props.selectModule(this.props.modules[this.props.modules.length-1], this.props.modules.length-1) //just make it re-render

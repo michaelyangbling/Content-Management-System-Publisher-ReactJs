@@ -19,6 +19,9 @@ export default class ModuleItemList extends Component{
 
     }
 
+    editModule=()=>{
+
+    }
 
     render(){
         // console.log(this.props.index,this.btn)
@@ -29,10 +32,11 @@ export default class ModuleItemList extends Component{
                    style={{margin:"1px",padding:"8px"}}>
                     {this.props.module.title}
                     {this.props.index===this.props.selectedIndex? <div>(selected)</div> : null}
-
                 </a>
                 <i onClick={this.deleteModule}
-                   className="float-left btn fa fa-times fa-1x" style={{color:"red"}}>del</i>
+                   className="float-left btn fa fa-times fa-1x" style={{color:"red"}}></i>
+                <i onClick={this.editModule} style={{margin:"1px"}}
+                   className="float-right btn fa fa-pencil fa-1x"></i>
             </li>
         )
     }

@@ -26,7 +26,16 @@ export default class CourseService{
         //server update
         this.findCourseById(courseId).modules[moduleIndex].lessons.splice(index,1)
     }
+    addTopic=(input, courseId, moduleIndex, lessonIndex)=>{
+        //console.log(this.findCourseById(courseId).modules[moduleIndex], lessonIndex)
+        //server update
+        this.findCourseById(courseId).modules[moduleIndex].lessons[lessonIndex].topics.push({title: input, widgets: []})
+    }
 
+    deleteTopic=(courseId, moduleIndex, lessonIndex, topicIndex)=>{
+        //server update
+        this.findCourseById(courseId).modules[moduleIndex].lessons[lessonIndex].topics.splice(topicIndex, 1)
+    }
     findAllCourses(){ //arrow function bind this to original scope
         return this.courses
     }

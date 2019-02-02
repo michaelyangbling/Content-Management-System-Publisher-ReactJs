@@ -4,7 +4,7 @@ import TopicPills from './TopicPills'
 import CourserService from '../services/CourseService'
 export default class LessonTabs extends Component{
     constructor(props){
-        console.log("remap lessontabs")
+        //console.log("remap lessontabs")
         super(props)
         //to select lesson
         if (this.props.lessons.length>0)
@@ -49,7 +49,9 @@ export default class LessonTabs extends Component{
           <div>
               <ul className="nav nav-tabs">
                   {this.props.lessons.map(
-                      (lesson,index)=><Tab lesson={lesson} selectLesson={this.selectLesson} index={index} deleteLesson={this.deleteLesson}/>
+                      (lesson,index)=><Tab lesson={lesson}
+                                           selectLesson={this.selectLesson} index={index}
+                                           deleteLesson={this.deleteLesson} selectedIndex={this.state.index}/>
                     ) }
                   <div style={{margin:"3px"}}>
                       {/*//onChange is triggered on render?*/}
@@ -63,7 +65,11 @@ export default class LessonTabs extends Component{
 
 
 
-              {(this.props.lessons.length>0)?<TopicPills topics={this.state.lesson.topics} courseId={this.props.courseId} moduleIndex={this.props.moduleIndex}/> : null}
+              {(this.props.lessons.length>0)?<TopicPills topics={this.state.lesson.topics}
+                                                         courseId={this.props.courseId}
+                                                         moduleIndex={this.props.moduleIndex}
+                                                         lessonIndex={this.state.index}
+              /> : null}
             </div>
 
 
