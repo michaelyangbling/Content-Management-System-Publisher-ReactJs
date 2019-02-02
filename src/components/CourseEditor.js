@@ -16,13 +16,13 @@ export default class CourseEditor extends Component{
         this.courseService=new CourseService()
         this.course=this.courseService.findCourseById(this.props.courseId)
         if (this.course.modules.length>0)
-          this.state={course: this.course, module: this.course.modules[0], index: 0}
+          this.state={course: this.course, module: this.course.modules[0], index: 0}//index: cur module index  //should module list control state itself?
         else
           this.state={course: this.course, index: 0}
           
     }
     deleteModule=(index)=>{
-        console.log("deleting")
+        //console.log("deleting")
         this.courseService.deleteModule(this.course.id, this.course.modules, index)
         if (this.course.modules.length>0)
             this.setState({module: this.course.modules[0], index: 0})
@@ -30,7 +30,7 @@ export default class CourseEditor extends Component{
             this.setState({index: 0})
     }
     selectModule= (module, index)=>{
-        console.log("selecting")
+        //console.log("selecting")
         this.setState({module: module, index: index}) }
     // index for changecolor of selected module
     // module for showing cur module's content
@@ -47,7 +47,7 @@ export default class CourseEditor extends Component{
                                 deleteModule={this.deleteModule}/>
                 </div>
             <div className="col-sm-10">
-                {(this.course.modules.length>0)?<LessonTabs lessons={this.state.module.lessons}/> : null}
+                {(this.course.modules.length>0)?<LessonTabs lessons={this.state.module.lessons} courseId={this.state.course.id} moduleIndex={this.state.index}/> : null}
             </div>
             </div>
             </div>

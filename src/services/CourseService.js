@@ -11,11 +11,21 @@ export default class CourseService{
         this.findCourseById(courseId).modules.push({title: input, lessons: []})
     }
 
+
     deleteModule=(courseId, module, moduleIndex)=>{
         //server update using courseId
         module.splice(moduleIndex, 1)
     }
 
+    addLesson=(input, courseId, moduleIndex)=>{
+        //server update
+        this.findCourseById(courseId).modules[moduleIndex].lessons.push({title: input, topics: []})
+    }
+
+    deleteLesson=(courseId, moduleIndex, index)=>{
+        //server update
+        this.findCourseById(courseId).modules[moduleIndex].lessons.splice(index,1)
+    }
 
     findAllCourses(){ //arrow function bind this to original scope
         return this.courses
