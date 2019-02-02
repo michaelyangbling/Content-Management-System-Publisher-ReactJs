@@ -29,6 +29,8 @@ export default class LessonTabs extends Component{
         this.input=event.target.value
     }
 
+
+
     createLesson=()=> {
         this.courseService.addLesson(this.input, this.props.courseId, this.props.moduleIndex);
         this.selectLesson(this.props.lessons[this.props.lessons.length-1], this.props.lessons.length-1)

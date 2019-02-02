@@ -17,6 +17,11 @@ export default class CourseService{
         module.splice(moduleIndex, 1)
     }
 
+    changeModuleTitle=(courseId, moduleIndex, name)=>{
+        //server update using courseId...moduleIndex
+        this.findCourseById(courseId).modules[moduleIndex].title=name
+    }
+
     addLesson=(input, courseId, moduleIndex)=>{
         //server update
         this.findCourseById(courseId).modules[moduleIndex].lessons.push({title: input, topics: []})

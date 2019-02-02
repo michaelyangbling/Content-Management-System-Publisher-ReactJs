@@ -28,7 +28,8 @@ export default class ModuleList extends Component{
 
                     {this.props.modules.map((module, index) =>(
                     <ModuleListItem module={module} index={index} selectedIndex={this.props.index}
-                    selectModule={this.props.selectModule} deleteModule={this.props.deleteModule}/> )
+                    selectModule={this.props.selectModule} deleteModule={this.props.deleteModule}
+                    courseId={this.props.courseId}/> )
                     )}
 
 
