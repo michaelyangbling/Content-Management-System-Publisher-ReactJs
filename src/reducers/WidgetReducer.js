@@ -1,21 +1,21 @@
-const widgets =
+const defaultWidgets =
     {
         widgets: [
             {
                 id: 123,
-                title: 'Widget 1',
+                title: 'default 1',
                 type: 'HEADING',
-                text: 'This is a heading',
-                size: 2
+                text: 'This is a default heading',
+                size: 6
             },
             {
                 id: 234,
-                title: 'Widget 2',
+                title: 'default 2',
                 type: 'IMAGE'
             }
         ]
     }
-const widgetReducer = (state = widgets, action) => {//state initial is undefined
+const WidgetReducer = (state=defaultWidgets, action) => {//state initial is undefined
     switch(action.type) {
         // case 'DELETE_WIDGET':
         //     return {
@@ -39,9 +39,15 @@ const widgetReducer = (state = widgets, action) => {//state initial is undefined
         //             widget.id === action.widget.id ? action.widget : widget
         //         )
         //     }
+
+        case 'LOAD_WIDGET':
+            console.log("reducer widgets")
+            return {
+                widgets: action.widgets
+            }
         default:
             return state;
     }
 }
 
-export default widgetReducer;
+export default WidgetReducer;

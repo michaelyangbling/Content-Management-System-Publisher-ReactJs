@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import WidgetList from './WidgetList'
 import Pill from './Pill'
 import CourseService from '../services/CourseService.js'
+import App from '../containers/WidgeListContainer'
 export default class TopicPills extends Component{
     constructor(props){
         super(props)
@@ -59,7 +60,7 @@ export default class TopicPills extends Component{
                 </ul>
 
                 {/*//WidgetList static for now*/}
-                {(this.props.topics.length>0)?<WidgetList widgets={this.state.topic.widgets}/> : null}
+                {(this.props.topics.length>0)?<App widgets={this.state.topic.widgets}/> : null}
             </div>
         )
     }

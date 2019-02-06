@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import CourserService from '../services/CourseService'
 export default class ModuleItemList extends Component{
     constructor(props){
-        console.log("constructed")// why state to true after deleing?
+        //console.log("constructed")// why state to true after deleing?
         super(props)
         this.state={edit: false}
         this.courseService=new CourserService()

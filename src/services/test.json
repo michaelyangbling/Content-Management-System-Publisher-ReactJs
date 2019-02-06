@@ -13,23 +13,28 @@
                   "title": "topic1",
                   "widgets": [
                     {
+                      "id":"1",
                       "type": "HEADING",
                       "size": 1,
-                      "text": "The Document Object Model"
+                      "text": "Testing the text"
                     },
                     {
+                      "id":"2",
                       "type": "PARAGRAPH",
                       "text": "This topic introduces the DOM"
                     },
                     {
+                      "id":"10",
                       "type": "LIST",
                       "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
                     },
                     {
+                      "id":"3",
                       "type": "IMAGE",
                       "src": "https://picsum.photos/200"
                     },
                     {
+                      "id":"4",
                       "type": "LINK",
                       "title": "The DOM",
                       "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
@@ -117,23 +122,28 @@
                   "title": "DOM",
                   "widgets": [
                     {
+                      "id":"5",
                       "type": "HEADING",
                       "size": 1,
                       "text": "The Document Object Model"
                     },
                     {
+                      "id":"6",
                       "type": "PARAGRAPH",
                       "text": "This topic introduces the DOM"
                     },
                     {
+                      "id":"7",
                       "type": "LIST",
                       "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
                     },
                     {
+                      "id":"8",
                       "type": "IMAGE",
                       "src": "https://picsum.photos/200"
                     },
                     {
+                      "id":"9",
                       "type": "LINK",
                       "title": "The DOM",
                       "href": "https://en.wikipedia.org/wiki/Document_Object_Model"

@@ -1,53 +1,52 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
-import * as actions from "../actions"
-import WidgetContainer from '../component/widget'
+import WidgetList from '../components/WidgetList'
+import { createStore } from 'redux'
+import {Provider} from 'react-redux'
+import WidgetReducer from '../reducers/WidgetReducer.js'
 
-class WidgetList extends Component {
-    constructor(props) {
-        super(props)
-        this.props.findAllWidgets()
-    }
-    render() {
-        return(
-            <div>
-                {/*<h1>Widget List {this.props.widgets.length}</h1>*/}
+const someStore =
+    createStore(WidgetReducer)
 
-                {/*<button hidden={this.props.previewMode} onClick={this.props.save}>*/}
-                    {/*Save*/}
-                {/*</button>*/}
-                {/*<button onClick={this.props.preview}>*/}
-                    {/*Preview*/}
-                {/*</button>*/}
-
-                <ul>
-                    {this.props.widgets.map(widget => (
-                        <WidgetContainer widget={widget}
-                                         // preview={this.props.previewMode}
-                                         key={widget.id}/>
-                    ))}
-                </ul>
-                {/*<button onClick={this.props.addWidget}>Add widget*/}
-                {/*</button>*/}
-            </div>
-        )
-    }
-}
-
-const stateToPropertiesMapper = (state) => ({
-    widgets: state.widgets,
-    // previewMode: state.preview
+const stateToPropertyMapper = state => ({
+    widgets: state.widgets
 })
-// const dispatcherToPropsMapper
-//     = dispatch => ({
-//     findAllWidgets: () => actions.findAllWidgets(dispatch),
-//     addWidget: () => actions.addWidget(dispatch),
-//     save: () => actions.save(dispatch),
-//     preview: () => actions.preview(dispatch)
-// })
-export const App = connect(
-    stateToPropertiesMapper)(WidgetList)
 
-// export const App = connect(
-//     stateToPropertiesMapper,
-//     dispatcherToPropsMapper)(WidgetList)
+const dispatchToPropertyMapper = dispatch => ({
+    loadWidget: widgets => {
+        console.log("lodaing widgets")
+        dispatch({
+            type: 'LOAD_WIDGET',
+            widgets: widgets
+        })
+    },
+    deleteWidget: widget =>
+        dispatch({
+            type: 'DELETE_WIDGET',
+            widget: widget
+        }),
+    addWidget: () =>
+        dispatch({
+            type: 'ADD_WIDGET'
+        }),
+    updateWidget: widget =>
+        dispatch({
+            type: 'UPDATE_WIDGET',
+            widget: widget
+        }),
+})
+
+//https://react-redux.js.org/using-react-redux/connect-mapdispatch
+const WidgetListContainer = connect(
+    stateToPropertyMapper,dispatchToPropertyMapper
+)(WidgetList)
+
+const App = ({widgets}) => (
+    <Provider store={someStore}>
+        <WidgetListContainer curWidgets={widgets}/>
+    </Provider>)
+
+export default App
+
+
+
