@@ -18,8 +18,9 @@ export default class WidgeList extends Component{
                 <div className="border border-primary" style={{padding:"20px","margin": "3px"}}>
                     <div className="row">
                         <h3 className="col-4"> Heading Widget </h3>
-                        <i className="col-2 btn fas fa-2x fa-arrow-alt-circle-down"  name="down"></i>
-                        <i className="col-2 btn fas fa-2x fa-arrow-alt-circle-up"  name="up"></i>
+
+                        <i className="col-2 btn fas fa-2x fa-arrow-alt-circle-down"></i>
+                        <i className="col-2 btn fas fa-2x fa-arrow-alt-circle-up"></i>
                         <select className="col-2" name="selectWidget">
                             <option value="heading">heading</option>
                             <option value="paragraph">paragraph</option>
@@ -27,7 +28,7 @@ export default class WidgeList extends Component{
                             <option value="image">image</option>
                             <option value="link">link</option>
                         </select>
-                        <i className="btn col-2 fas fa-2x fa-trash-alt"  name="delete"></i>
+                        <i className="btn col-2 fas fa-2x fa-trash-alt"></i>
                     </div>
                     <br/>
                     <input className="form-control" placeholder="Heading text"/>

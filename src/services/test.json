@@ -14,13 +14,13 @@
                   "widgets": [
                     {
                       "id":"1",
-                      "type": "HEADING",
+                      "type": "HEAD",
                       "size": 1,
                       "text": "Testing the text"
                     },
                     {
                       "id":"2",
-                      "type": "PARAGRAPH",
+                      "type": "PARA",
                       "text": "This topic introduces the DOM"
                     },
                     {
@@ -123,13 +123,13 @@
                   "widgets": [
                     {
                       "id":"5",
-                      "type": "HEADING",
+                      "type": "HEAD",
                       "size": 1,
                       "text": "The Document Object Model"
                     },
                     {
                       "id":"6",
-                      "type": "PARAGRAPH",
+                      "type": "PARA",
                       "text": "This topic introduces the DOM"
                     },
                     {

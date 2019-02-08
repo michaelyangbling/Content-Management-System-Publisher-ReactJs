@@ -1,5 +1,6 @@
 https://zhongheng-yang-react.herokuapp.com/course/grid
 
+
 React web application, now support getting and deleting courses in frontEnd, js service not yet connected to back end
 
 Users can view modules->lessons->topics structure by selecting modules->lessons->topics sequentially
@@ -9,7 +10,7 @@ Creating modules or lessons or topics will auto-select new module or lesson or t
 Deleting modules or lessons or topics will auto-select first module or lesson or topic
 Editing Modules or lessons or topics is independent of whether it is  selected or not
 
-WidgetList is static for now
+Using indexes as id except for lesson id
 
 courses->modules->lessons->topics, latter part need previous one to exist
 

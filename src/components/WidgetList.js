@@ -2,8 +2,9 @@ import React from 'react'
 import WidgetComponent from './WidgetComponent'
 const WidgetList = ({curWidgets, loadWidget,widgets, addWidget, deleteWidget, updateWidget}) => {
     // Cannot update during an existing state transition (such as within `render`), rendered 2 times?
-    console.log("rendered")
-    loadWidget(curWidgets)
+    //console.log("rendered")
+    loadWidget(curWidgets)//state not set for 1st time? then set for second time?
+    //console.log(widgets)
     return(
     <div>
         <div className="row" style={{margin:"5px"}}>
@@ -15,13 +16,13 @@ const WidgetList = ({curWidgets, loadWidget,widgets, addWidget, deleteWidget, up
                 <input type="checkbox" style={{zoom:"2"}} name="previewCheckbox"/>
             </div>
         </div>
-        <div className="list-group">
             {
-                widgets.map(widget =>
+                widgets.map((widget,index) =>
                     <WidgetComponent
-                        key={widget.id}
-                        // updateWidget={updateWidget}
-                        // deleteWidget={deleteWidget}
+                        key={index}
+                        updateWidget={updateWidget}
+                        deleteWidget={deleteWidget}
+                        widgetIndex={index}
                         widget={widget}/>
                 )
             }
@@ -30,7 +31,11 @@ const WidgetList = ({curWidgets, loadWidget,widgets, addWidget, deleteWidget, up
             {/*className="btn btn-success">*/}
             {/*Add*/}
             {/*</button>*/}
-        </div>
+        <span className="fa-stack btn" style={{color: "blue",position: "fixed",bottom:"10px",right: "10px"}}
+        onClick={addWidget}>
+  <i className="fa fa-circle fa-stack-2x" ></i>
+  <i className="fa fa-plus fa-stack-1x fa-inverse"></i>
+</span>
     </div>
     )
 }

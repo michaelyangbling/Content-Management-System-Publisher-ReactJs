@@ -1,18 +1,6 @@
 const defaultWidgets =
     {
         widgets: [
-            {
-                id: 123,
-                title: 'default 1',
-                type: 'HEADING',
-                text: 'This is a default heading',
-                size: 6
-            },
-            {
-                id: 234,
-                title: 'default 2',
-                type: 'IMAGE'
-            }
         ]
     }
 const WidgetReducer = (state=defaultWidgets, action) => {//state initial is undefined
@@ -21,17 +9,16 @@ const WidgetReducer = (state=defaultWidgets, action) => {//state initial is unde
         //     return {
         //         widgets: state.widgets.filter(widget => widget.id !== action.widget.id)
         //     }
-        // case 'ADD_WIDGET':
-        //     return {
-        //         widgets: [
-        //             ...state.widgets,
-        //             {
-        //                 type: 'HEADING',
-        //                 text: 'New Widget',
-        //                 size: 1
-        //             }
-        //         ]
-        //     }
+        case 'ADD_WIDGET':
+            //course service and server update
+            //console.log("adding")
+            state.widgets.push({
+            type: 'HEAD',
+                text: 'New Widget',
+            size: 1})
+            return {
+                widgets:state.widgets.map(widget=>widget)
+            }
         // case 'UPDATE_WIDGET':
         //     // replace the old widget with the new widget
         //     return {
@@ -39,9 +26,28 @@ const WidgetReducer = (state=defaultWidgets, action) => {//state initial is unde
         //             widget.id === action.widget.id ? action.widget : widget
         //         )
         //     }
-
+        case 'SAVE_WIDGET':
+            // replace the old widget with the new widget
+            //course service and server update
+            return {
+            }
+        case 'DELETE_WIDGET':
+            //courseServiceJs and server update
+            state.widgets.splice(action.widgetIndex, 1)
+            console.log(action.widgetIndex)
+            return {
+                widgets:state.widgets.map(widget=>widget)
+            }
+        case 'UPDATE_WIDGET':
+            // replace the old widget with the new widget
+            return {
+                widgets: state.widgets.map(widget=>widget)
+                // widgets: state.widgets.map(widget =>
+                //     widget.id === action.widget.id ? action.widget : widget
+                // )
+            }
         case 'LOAD_WIDGET':
-            console.log("reducer widgets")
+            //console.log("reducer widgets")
             return {
                 widgets: action.widgets
             }
