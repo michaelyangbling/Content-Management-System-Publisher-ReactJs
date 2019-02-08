@@ -10,7 +10,7 @@ Creating modules or lessons or topics will auto-select new module or lesson or t
 Deleting modules or lessons or topics will auto-select first module or lesson or topic
 Editing Modules or lessons or topics is independent of whether it is  selected or not
 
-Using indexes as id except for lesson id
+Using indexes as id except for lesson id and module id("time")
 
 courses->modules->lessons->topics, latter part need previous one to exist
 
@@ -20,7 +20,9 @@ JUMP TO FIRST MODULE AFTER DELETING
 
 
 MERN Stack in branch development, 
-
+widgets would update before saving( to server)
+but other courses->modules->lessons->topics would only update successfully if server responds( not influencing other updates
+)
 
 
 

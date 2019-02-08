@@ -1,10 +1,11 @@
 import React from 'react'
 import WidgetComponent from './WidgetComponent'
-const WidgetList = ({curWidgets, loadWidget,widgets, addWidget, deleteWidget, updateWidget}) => {
+const WidgetList = ({togglePreview, curWidgets, addWidget, deleteWidget, updateWidget,preview}) => {
     // Cannot update during an existing state transition (such as within `render`), rendered 2 times?
     //console.log("rendered")
-    loadWidget(curWidgets)//state not set for 1st time? then set for second time?
+    //loadWidget(curWidgets)//state not set for 1st time? then set for second time?
     //console.log(widgets)
+    console.log(preview, curWidgets)
     return(
     <div>
         <div className="row" style={{margin:"5px"}}>
@@ -13,13 +14,16 @@ const WidgetList = ({curWidgets, loadWidget,widgets, addWidget, deleteWidget, up
             </div>
             <div className="col-2">
                 <b>Preview</b>
-                <input type="checkbox" style={{zoom:"2"}} name="previewCheckbox"/>
+                <input type="checkbox" style={{zoom:"2"}} name="previewCheckbox" checked={preview}
+                       onChange={ ()=>{togglePreview()} }/>
             </div>
         </div>
             {
-                widgets.map((widget,index) =>
+                curWidgets.map((widget,index) =>
                     <WidgetComponent
-                        key={index}
+                        preview={preview}
+                        widgets={curWidgets}
+                        key={widget.id}
                         updateWidget={updateWidget}
                         deleteWidget={deleteWidget}
                         widgetIndex={index}
@@ -32,7 +36,7 @@ const WidgetList = ({curWidgets, loadWidget,widgets, addWidget, deleteWidget, up
             {/*Add*/}
             {/*</button>*/}
         <span className="fa-stack btn" style={{color: "blue",position: "fixed",bottom:"10px",right: "10px"}}
-        onClick={addWidget}>
+        onClick={()=>addWidget(curWidgets)}>
   <i className="fa fa-circle fa-stack-2x" ></i>
   <i className="fa fa-plus fa-stack-1x fa-inverse"></i>
 </span>

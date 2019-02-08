@@ -4,12 +4,12 @@ import WidgetList from '../components/WidgetList'
 import { createStore } from 'redux'
 import {Provider} from 'react-redux'
 import WidgetReducer from '../reducers/WidgetReducer.js'
-import HeadingWidget from '../components/HeadingWidget'
 const someStore =
     createStore(WidgetReducer)
 
 const stateToPropertyMapper = state => ({
-    widgets: state.widgets
+    widgets: state.widgets,
+    preview: state.preview
 })
 
 const dispatchToPropertyMapper = dispatch => ({
@@ -20,25 +20,32 @@ const dispatchToPropertyMapper = dispatch => ({
             widgets: widgets
         })
     },
-    deleteWidget: widgetIndex =>
+    deleteWidget: (widgetIndex, widgets)=>
         dispatch({
             type: 'DELETE_WIDGET',
-            widgetIndex: widgetIndex
+            widgetIndex: widgetIndex,
+            widgets: widgets
         }),
-    addWidget: () =>
+    addWidget: (widgets) =>
         dispatch({
-            type: 'ADD_WIDGET'
+            type: 'ADD_WIDGET',
+            widgets: widgets
         }),
-    updateHead: widget =>
-        dispatch({
-            type: 'UPDATE_HEAD',
-            widget: widget
-        }),
-    updateWidget: widget =>
+    // updateHead: widget =>
+    //     dispatch({
+    //         type: 'UPDATE_HEAD',
+    //         widget: widget
+    //     }),
+    updateWidget: (widget, widgets) =>
         dispatch({
             type: 'UPDATE_WIDGET',
-            widget: widget
+            widget: widget,
+            widgets: widgets
         }),
+    togglePreview: () =>
+        dispatch({
+            type: 'togglePreview'
+        })
 })
 
 //https://react-redux.js.org/using-react-redux/connect-mapdispatch
