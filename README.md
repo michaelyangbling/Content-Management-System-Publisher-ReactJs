@@ -14,6 +14,9 @@ Using indexes as id except for lesson id and module id("time")
 
 courses->modules->lessons->topics, latter part need previous one to exist
 
+list in list widget is unordered by default
+update would occur if there is change in widget
+
 JUMP TO FIRST MODULE AFTER DELETING
 
 

@@ -1,6 +1,10 @@
 import React from 'react'
 import HeadingWidget from './HeadingWidget'
 import ImageWidget from './ImageWidget'
+import ParaWidget from './ParaWidget'
+import ListWidget from './ListWidget'
+import LinkWidget from './LinkWidget'
+
 import '../../node_modules/bootstrap/dist/js/bootstrap.bundle.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowAltCircleUp , faTrashAlt} from '@fortawesome/free-solid-svg-icons'//search for icon in ide...
@@ -33,7 +37,7 @@ const WidgetComponent = ({preview, widgets, widget, deleteWidget, updateWidget,w
             <select
                 onChange={(event) => {
                     widget.type = event.target.value
-                    // updateWidget(widget)
+                    updateWidget(widget, widgets)
                 }}
                 className=" col-2" value={widget.type}>
                 <option value="HEAD">Heading</option>
@@ -60,8 +64,14 @@ const WidgetComponent = ({preview, widgets, widget, deleteWidget, updateWidget,w
                 widget={widget}
                 widgets={widgets}
                 preview={preview}/>}
-
-        {widget.type == 'IMAGE' && <ImageWidget widget={widget}/>}
+        {widget.type == 'PARA' && <ParaWidget updateWidget={updateWidget}
+                                                widget={widget} widgets={widgets} preview={preview}/>}
+        {widget.type == 'IMAGE' && <ImageWidget updateWidget={updateWidget}
+                                                widget={widget} widgets={widgets} preview={preview}/>}
+        {widget.type == 'LIST' && <ListWidget updateWidget={updateWidget}
+                                                widget={widget} widgets={widgets} preview={preview}/>}
+        {widget.type == 'LINK' && <LinkWidget updateWidget={updateWidget}
+                                              widget={widget} widgets={widgets} preview={preview}/>}
 
     </div>)
 }

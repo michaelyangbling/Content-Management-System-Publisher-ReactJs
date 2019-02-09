@@ -16,17 +16,18 @@
                       "id":"1",
                       "type": "HEAD",
                       "size": 1,
-                      "text": "Testing the text"
+                      "text": "Heading text"
                     },
                     {
                       "id":"2",
                       "type": "PARA",
-                      "text": "This topic introduces the DOM"
+                      "para": "This topic introduces the DOM"
                     },
                     {
                       "id":"10",
                       "type": "LIST",
-                      "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                      "items": "Nodes\nAttributes\nTag names\nIDs\nStyles\nClasses",
+                      "list": "ul"
                     },
                     {
                       "id":"3",
@@ -66,24 +67,24 @@
                 {
                   "title": "DOM",
                   "widgets": [
-                    {
-                      "type": "HEADING",
+                    { "id" :"20",
+                      "type": "HEAD",
                       "size": 1,
                       "text": "The Document Object Model"
                     },
-                    {
-                      "type": "PARAGRAPH",
-                      "text": "This topic introduces the DOM"
+                    { "id" :"21",
+                      "type": "PARA",
+                      "para": "This topic introduces the DOM"
                     },
-                    {
+                    { "id" :"22",
                       "type": "LIST",
-                      "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                      "items": "Nodes\nAttributes\nTag names\nIDs\nStyles\nClasses"
                     },
-                    {
+                    { "id" :"23",
                       "type": "IMAGE",
                       "src": "https://picsum.photos/200"
                     },
-                    {
+                    { "id" :"24",
                       "type": "LINK",
                       "title": "The DOM",
                       "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
@@ -130,12 +131,12 @@
                     {
                       "id":"6",
                       "type": "PARA",
-                      "text": "This topic introduces the DOM"
+                      "para": "This topic introduces the DOM"
                     },
                     {
                       "id":"7",
                       "type": "LIST",
-                      "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                      "items": "Nodes\nAttributes\nTag names\nIDs\nStyles\nClasses"
                     },
                     {
                       "id":"8",
