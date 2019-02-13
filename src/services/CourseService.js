@@ -75,7 +75,7 @@ export default class CourseService{
     signup=(username, password, callback) =>{
         //console.log("signup")
         return fetch(this.url+"/register", {method: 'POST',
-            body: JSON.stringify({username:username, password: password}),
+            body: JSON.stringify({username:username, password: password, firstname: "", lastname:""}),
             headers: new Headers({'Content-type': 'application/json'}),
             credentials: 'include'}).then(function(res){
 
@@ -100,6 +100,33 @@ export default class CourseService{
         }).then(callback)
             .catch(function(error){alert("error check connection")
             })
+    }
+
+    profile=(callback) =>{
+        return fetch(this.url+"/profile", {
+            credentials: 'include'}).then(function(res){
+
+            if( !(res.ok) ){
+                throw Error(res.statusText)
+            }
+            return res
+        }).then(res => res.json()).then(callback)
+            .catch(function(error){alert("error check connection")})
+    }
+
+
+    updateProfile=(firstname,lastname,callback) =>{
+        return fetch(this.url+"/updateProfile", {method:'PUT',
+            body: JSON.stringify({firstname: firstname, lastname:lastname}),
+            headers: new Headers({'Content-type': 'application/json'}),
+            credentials: 'include'}).then(function(res){
+
+            if( !(res.ok) ){
+                throw Error(res.statusText)
+            }
+            return res
+        }).then(res => res.json()).then(callback)
+            .catch(function(error){alert("error check connection")})
     }
 
     addModule=(input, courseId)=>{

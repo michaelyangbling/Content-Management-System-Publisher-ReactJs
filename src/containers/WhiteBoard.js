@@ -13,6 +13,7 @@ import CourseService, {isAuth} from '../services/CourseService'
 import CourseEditor from '../components/CourseEditor'
 import LogIn from '../components/LogIn.js'
 import SignUp from '../components/SignUp.js'
+import Profile from '../components/Profile.js'
 
 //install router: npm i react-router-dom --save  fails but work, npm install --save react-router-dom fails
 //onClick
@@ -56,6 +57,8 @@ class WhiteBoard extends React.Component{
     )
 
 
+
+
     render(){
         console.log('c',this.state.checkedAuth, isAuth )
       return(
@@ -69,7 +72,8 @@ class WhiteBoard extends React.Component{
                                                     <CourseEditor courseId={match.params.id}/>)}} //would re-construct an instance?
             />}
 
-            {/*//redirect if logged in*/}
+
+            {/*//redirect if logged in unexpected mount?*/}
               {this.state.checkedAuth && <Route exact path="/login"
                                                 render={()=>
                                                     this.state.isAuth ? <Redirect to="/course/table"/> :<LogIn update={this.update}/>}/>}
@@ -79,6 +83,10 @@ class WhiteBoard extends React.Component{
                                                     this.state.isAuth ? <Redirect to="/course/table"/> :<SignUp update={this.update}/>}/>}
 
             {/* nav bar and add icon on bottom right */}
+
+              {this.state.checkedAuth && <Route exact path="/profile"
+                                                render={()=>
+                                                    (!this.state.isAuth ? <Redirect to="/login"/> :<Profile update={this.update}/>)}/>}
 
 
 
@@ -118,7 +126,7 @@ class WhiteBoard extends React.Component{
                                         </li>
 
                                         <li className="nav-item active">
-                                            <a className="nav-link" href="#">Profile</a>
+                                            <Link className="nav-link" to="/profile">Profile</Link>
                                         </li>
                                         <li className="nav-item active">
                                             <input placeholder="New Course Title" className="form-control"

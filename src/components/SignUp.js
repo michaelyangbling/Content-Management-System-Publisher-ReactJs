@@ -22,6 +22,7 @@ export default class SignUp extends Component{
             //console.log(res)
             if (res.username===null)
                 alert("username exist")
+
             else
                 this.props.update()
         })
