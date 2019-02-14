@@ -1,7 +1,7 @@
 export var isAuth=null
 export default class UserService{
     constructor(){
-        this.url="http://localhost:8080/api"
+        this.url="https://still-basin-44392.herokuapp.com/api"
     }
 
     // checkLogIn = () =>{

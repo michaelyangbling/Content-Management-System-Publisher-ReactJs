@@ -11,7 +11,7 @@ export default class CourseService{ //singleton
         this.courses=[]
         this.findAllCourses=this.findAllCourses.bind(this)
         this.deleteCourse=this.deleteCourse.bind(this)
-        this.url="http://localhost:8080/api"
+        this.url="https://still-basin-44392.herokuapp.com/api"
     }
 
     // checkLogIn = () =>{
