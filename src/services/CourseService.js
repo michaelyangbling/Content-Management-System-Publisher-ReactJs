@@ -1,12 +1,11 @@
-import courses from './test.json'
-export var isAuth=null
+//import courses from './test.json'
+var courses=null
 export default class CourseService{ 
     constructor(){
         this.courses=courses
         this.findAllCourses=this.findAllCourses.bind(this)
         this.deleteCourse=this.deleteCourse.bind(this)
         this.url="http://localhost:8080/api"
-        this.login=null
     }
 
     // checkLogIn = () =>{
@@ -39,95 +38,6 @@ export default class CourseService{
     //     sync().then((res)=>console.log('out',res))
     //     return this.login
 
-    checkAuth = (callback) =>{
-         fetch(this.url+"/checkLogIn", {credentials: 'include'}).then(function(res){
-            if( !(res.ok) ){
-                throw Error(res.statusText)
-            }
-            return res
-        }).then(function(response){
-             return response.json()
-        }).then(callback).catch(function(error){alert("error check connection")})
-
-
-
-
-
-
-
-    }
-
-    signin=(username, password, callback) =>{
-        return fetch(this.url+"/login", {method: 'POST',
-            body: JSON.stringify({username:username, password: password}),
-            headers: new Headers({'Content-type': 'application/json'}),
-            credentials: 'include'}).then(function(res){
-
-            if( !(res.ok) ){
-                throw Error(res.statusText)
-            }
-            return res
-        }).then(res => res.json()).then(callback)
-            .catch(function(error){alert("error check connection")
-        ;console.log(error)})
-    }
-
-    signup=(username, password, callback) =>{
-        //console.log("signup")
-        return fetch(this.url+"/register", {method: 'POST',
-            body: JSON.stringify({username:username, password: password, firstname: "", lastname:""}),
-            headers: new Headers({'Content-type': 'application/json'}),
-            credentials: 'include'}).then(function(res){
-
-            if( !(res.ok) ){
-                throw Error(res.statusText)
-            }
-            return res
-        }).then(res => res.json()).then(callback)
-            .catch(function(error){alert("error check connection")
-            })
-    }
-
-    logout=(callback)=>{
-        return fetch(this.url+"/logout", {method: 'POST',
-            headers: new Headers({'Content-type': 'application/json'}),
-            credentials: 'include'}).then(function(res){
-
-            if( !(res.ok) ){
-                throw Error(res.statusText)
-            }
-            return res
-        }).then(callback)
-            .catch(function(error){alert("error check connection")
-            })
-    }
-
-    profile=(callback) =>{
-        return fetch(this.url+"/profile", {
-            credentials: 'include'}).then(function(res){
-
-            if( !(res.ok) ){
-                throw Error(res.statusText)
-            }
-            return res
-        }).then(res => res.json()).then(callback)
-            .catch(function(error){alert("error check connection")})
-    }
-
-
-    updateProfile=(firstname,lastname,callback) =>{
-        return fetch(this.url+"/updateProfile", {method:'PUT',
-            body: JSON.stringify({firstname: firstname, lastname:lastname}),
-            headers: new Headers({'Content-type': 'application/json'}),
-            credentials: 'include'}).then(function(res){
-
-            if( !(res.ok) ){
-                throw Error(res.statusText)
-            }
-            return res
-        }).then(res => res.json()).then(callback)
-            .catch(function(error){alert("error check connection")})
-    }
 
     addModule=(input, courseId)=>{
         //server update
@@ -164,8 +74,16 @@ export default class CourseService{
         //server update
         this.findCourseById(courseId).modules[moduleIndex].lessons[lessonIndex].topics.splice(topicIndex, 1)
     }
-    findAllCourses(){ //arrow function bind this to original scope
-        return this.courses
+    findAllCourses(callback){ //arrow function bind this to original scope
+        fetch(this.url+"/user/courses", {credentials: 'include'}).then(function(res){
+            if( !(res.ok) ){
+                throw Error(res.statusText)
+            }
+            return res
+        }).then(function(response){
+            return response.json()
+        }).then(callback).catch(function(error){alert("error check connection/ try refresh")})
+
     }
     findCourseById = courseId => //can only in client?
     this.course = this.courses.find(

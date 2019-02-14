@@ -1,22 +1,22 @@
 import React,{Component} from 'react'
-import CourseService from '../services/CourseService'
+import UserService from '../services/UserService'
 import {Link}  from 'react-router-dom'
 export default class LogIn extends Component{
     constructor(props){
 
         super(props)
-        this.courseService=new CourseService()
+        this.userService=new UserService()
         this.username=""
         this.password=""
         this.state={}
     }
     signin=()=>{
-        this.courseService.signin(this.username, this.password, (res)=>{
+        this.userService.signin(this.username, this.password, (res)=>{
             console.log(res)
             if (res.username===null)
                 alert("username or password incorrect")
             else
-                this.props.update()
+                this.props.update()//go to course list
         })
     }
     render(){

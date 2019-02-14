@@ -9,31 +9,34 @@ import {BrowserRouter as Router, Route, Link, Redirect}  from 'react-router-dom'
 import './courseList.style.client.css';
 import CourseTable from './CourseTable'
 import CourseGrid from './CourseGrid'
-import CourseService, {isAuth} from '../services/CourseService'
+import CourseService from '../services/CourseService'
+import  UserService, {isAuth} from '../services/UserService'
 import CourseEditor from '../components/CourseEditor'
 import LogIn from '../components/LogIn.js'
 import SignUp from '../components/SignUp.js'
 import Profile from '../components/Profile.js'
-
-//install router: npm i react-router-dom --save  fails but work, npm install --save react-router-dom fails
+//install router: npm i react-router-dom --save  fails but work, npm install --2save react-router-dom fails
 //onClick
 class WhiteBoard extends React.Component{
     constructor(){
         super()
         this.courseService = new CourseService()
-        this.state={courses: this.courseService.findAllCourses(), checkedAuth:false}
+        this.userService = new UserService()
+        this.state={checkedAuth:false}
+        this.title=""
         this.deleteCourse=this.deleteCourse.bind(this)
     }
 
     componentDidMount() {
-        this.courseService.checkAuth((res) => {
-            //console.log("mem",res)
-            if (res === 1)
-                this.setState({checkedAuth: true, isAuth: true})
-            else
-                this.setState({checkedAuth: true, isAuth: false})
-
-        })
+        this.update()
+        // this.userService.checkAuth((res) => {
+        //     //console.log("mem",res)
+        //     if (res === 1)
+        //         this.setState({checkedAuth: true, isAuth: true})
+        //     else
+        //         this.setState({checkedAuth: true, isAuth: false})
+        //
+        // })
     }
 
     deleteCourse(course){
@@ -41,20 +44,24 @@ class WhiteBoard extends React.Component{
     }
 
     logout=()=>{
-        this.courseService.logout(()=>this.setState({checkedAuth: true, isAuth: false}))
+        this.userService.logout(()=>this.setState({checkedAuth: true, isAuth: false}))
     }
 
-    update=()=>(
-        this.courseService.checkAuth((res) => {
-            console.log("mem",res)
+    update=()=>( //probable duplicate request if called
+        this.userService.checkAuth((res) => {
+            console.log("memx",res)
             if (res === 1)
-                this.setState({checkedAuth: true, isAuth: true})
+                this.courseService.findAllCourses(
+                    (res)=> {//better to check null response due to session expire here, but very little probability
+                        this.setState({checkedAuth: true, isAuth: true, courses:res})
+                    } )
             else
                 this.setState({checkedAuth: true, isAuth: false})
 
         })
 
     )
+    createCourse=()=>{}
 
 
 
@@ -130,7 +137,9 @@ class WhiteBoard extends React.Component{
                                         </li>
                                         <li className="nav-item active">
                                             <input placeholder="New Course Title" className="form-control"
-                                                   id="createNewCourse"/>
+                                                   id="createNewCourse" value={this.title}
+                                                   onChange={(event)=>(this.title=event.target.value
+                                                   this.setState({}) )}/>
                                         </li>
                                         <li className="nav-item active">
                     <span className="fa-stack btn red"> 
@@ -157,7 +166,7 @@ class WhiteBoard extends React.Component{
                         render={() => <CourseTable courses={this.courses}/>}/>
             </div>
             </Router> */}
-                            <span className="fa-stack wd-bottom-right btn">
+                            <span className="fa-stack wd-bottom-right btn" onClick={this.addCourse}>
               <i className="fa fa-circle fa-stack-2x"></i>
               <i className="fa fa-plus fa-stack-1x fa-inverse"></i>
               </span>

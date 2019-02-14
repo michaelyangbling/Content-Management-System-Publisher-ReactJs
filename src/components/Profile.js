@@ -1,16 +1,17 @@
 import React,{Component} from 'react'
-import CourseService from '../services/CourseService'
+import UserService from '../services/UserService'
+
 import {Link}  from 'react-router-dom'
 export default class Profile extends Component{
     constructor(props){
         console.log("mount pro")
 
         super(props)
-        this.courseService=new CourseService()
+        this.userService=new UserService()
         this.state={username:"", firstname:"", lastname:""}
     }
     componentDidMount(){
-        this.courseService.profile((res)=>{
+        this.userService.profile((res)=>{
             console.log(res)
             if (res.username===null){
                 alert("session expired")
@@ -22,7 +23,7 @@ export default class Profile extends Component{
     }
     componentWillReceiveProps(){ //not triggered when mount
         //console.log('up')
-        this.courseService.profile((res)=>{
+        this.userService.profile((res)=>{
             console.log(res)
             if (res.username===null){
                 alert("session expired")
@@ -34,7 +35,7 @@ export default class Profile extends Component{
     }
 
     updateProfile=()=>{
-        this.courseService.updateProfile(this.state.firstname, this.state.lastname, (res)=>{
+        this.userService.updateProfile(this.state.firstname, this.state.lastname, (res)=>{
             //console.log(res)
             if (res.username===null){
                 alert("session expired")

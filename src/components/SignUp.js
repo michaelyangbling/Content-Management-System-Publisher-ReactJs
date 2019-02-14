@@ -1,12 +1,12 @@
 import React,{Component} from 'react'
-import CourseService from '../services/CourseService'
+import UserService from '../services/UserService'
 import {Link}  from 'react-router-dom'
 
 export default class SignUp extends Component{
     constructor(props){
         //console.log("constrcuted")
         super(props)
-        this.courseService=new CourseService()
+        this.userService=new UserService()
         this.username=""
         this.password=""
         this.password2=""
@@ -18,13 +18,13 @@ export default class SignUp extends Component{
             alert("2 passwords not match!")
             return null}
         console.log('sbm')
-        this.courseService.signup(this.username, this.password, (res)=>{
+        this.userService.signup(this.username, this.password, (res)=>{
             //console.log(res)
             if (res.username===null)
                 alert("username exist")
 
             else
-                this.props.update()
+                this.props.update() //go to course list
         })
     }
     render(){
