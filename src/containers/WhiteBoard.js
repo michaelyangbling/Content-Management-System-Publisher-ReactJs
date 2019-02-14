@@ -39,9 +39,6 @@ class WhiteBoard extends React.Component{
         // })
     }
 
-    deleteCourse(course){
-      this.setState({courses: this.courseService.deleteCourse(course)})
-    }
 
     logout=()=>{
         this.userService.logout(()=>this.setState({checkedAuth: true, isAuth: false}))
@@ -49,11 +46,13 @@ class WhiteBoard extends React.Component{
 
     update=()=>( //probable duplicate request if called
         this.userService.checkAuth((res) => {
-            console.log("memx",res)
+            //console.log("memx",res)
             if (res === 1)
                 this.courseService.findAllCourses(
                     (res)=> {//better to check null response due to session expire here, but very little probability
-                        this.setState({checkedAuth: true, isAuth: true, courses:res})
+
+                          this.courseService.courses=res
+                        this.setState({checkedAuth: true, isAuth: true, courses:this.courseService.courses})
                     } )
             else
                 this.setState({checkedAuth: true, isAuth: false})
@@ -61,13 +60,28 @@ class WhiteBoard extends React.Component{
         })
 
     )
-    createCourse=()=>{}
+
+    deleteCourse(course){
+        this.courseService.deleteCourse(course.id, (res)=>{
+            this.courseService.courses=res
+            this.setState({courses: this.courseService.courses})
+        })
+    }
+
+    createCourse=()=>{
+            this.courseService.createCourse(
+                this.title, (res)=>{
+                    //console.log(res)
+                    this.courseService.courses=res
+                    this.setState({courses: this.courseService.courses})} //id are numbers
+            )
+    }
 
 
 
 
     render(){
-        console.log('c',this.state.checkedAuth, isAuth )
+        //console.log('c',this.state.checkedAuth, isAuth )
       return(
       //Router  contain at most one node, Link/Route should be in Router, so make Router the root
         <Router>
@@ -76,7 +90,7 @@ class WhiteBoard extends React.Component{
                                                 render={({match})=>{
                                                     return(
                                                         !this.state.isAuth ? <Redirect to="/login"/> :
-                                                    <CourseEditor courseId={match.params.id}/>)}} //would re-construct an instance?
+                                                    <CourseEditor courseId={parseInt(match.params.id)}/>)}} //would re-construct an instance?
             />}
 
 
@@ -138,11 +152,11 @@ class WhiteBoard extends React.Component{
                                         <li className="nav-item active">
                                             <input placeholder="New Course Title" className="form-control"
                                                    id="createNewCourse" value={this.title}
-                                                   onChange={(event)=>(this.title=event.target.value
-                                                   this.setState({}) )}/>
+                                                   onChange={(event)=>{this.title=event.target.value;
+                                                   this.setState({}) }}/>
                                         </li>
                                         <li className="nav-item active">
-                    <span className="fa-stack btn red"> 
+                    <span className="fa-stack btn red" onClick={this.createCourse}>
                         <i className="fa fa-circle fa-stack-2x"></i>
                         <i className="fa fa-plus fa-stack-1x fa-inverse"></i>
                     </span>
@@ -166,7 +180,7 @@ class WhiteBoard extends React.Component{
                         render={() => <CourseTable courses={this.courses}/>}/>
             </div>
             </Router> */}
-                            <span className="fa-stack wd-bottom-right btn" onClick={this.addCourse}>
+                            <span className="fa-stack wd-bottom-right btn" onClick={this.createCourse}>
               <i className="fa fa-circle fa-stack-2x"></i>
               <i className="fa fa-plus fa-stack-1x fa-inverse"></i>
               </span>

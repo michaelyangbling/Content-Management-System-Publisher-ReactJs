@@ -1,8 +1,14 @@
 //import courses from './test.json'
-var courses=null
-export default class CourseService{ 
+//var courses=[] //only one courses object, so never use = assignment later
+export default class CourseService{ //singleton
     constructor(){
-        this.courses=courses
+        const instance = this.constructor.instance;
+        if (instance) {
+            return instance;
+        }//singleton
+
+        this.constructor.instance = this
+        this.courses=[]
         this.findAllCourses=this.findAllCourses.bind(this)
         this.deleteCourse=this.deleteCourse.bind(this)
         this.url="http://localhost:8080/api"
@@ -74,6 +80,21 @@ export default class CourseService{
         //server update
         this.findCourseById(courseId).modules[moduleIndex].lessons[lessonIndex].topics.splice(topicIndex, 1)
     }
+
+    createCourse=(title, callback)=>{
+        return fetch(this.url+"/user/course", {method: 'POST',
+            body: JSON.stringify({title: title}),
+            headers: new Headers({'Content-type': 'application/json'}),
+            credentials: 'include'}).then(function(res){
+
+            if( !(res.ok) ){
+                throw Error(res.statusText)
+            }
+            return res
+        }).then(res => res.json()).then(callback)
+            .catch(function(error){alert("error, session may have expired, try refresh/ check connection/")
+            ;console.log(error)})
+    }
     findAllCourses(callback){ //arrow function bind this to original scope
         fetch(this.url+"/user/courses", {credentials: 'include'}).then(function(res){
             if( !(res.ok) ){
@@ -90,8 +111,19 @@ export default class CourseService{
       course => course.id === courseId
     )
 
-    deleteCourse(course){
-        this.courses=this.courses.filter( x => x.id!==course.id)
+    deleteCourse(numId, callback){
+        return fetch(this.url+"/user/course"+"/" +String(numId), {method: 'DELETE',
+            headers: new Headers({'Content-type': 'application/json'}),
+            credentials: 'include'}).then(function(res){
+
+            if( !(res.ok) ){
+                throw Error(res.statusText)
+            }
+            return res
+        }).then(res => res.json()).then(callback)
+            .catch(function(error){alert("error, session may have expired, try refresh/ check connection/")
+            ;console.log(error)})
+
         return this.courses
     }
 }
