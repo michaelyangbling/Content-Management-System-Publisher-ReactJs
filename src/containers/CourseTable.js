@@ -1,10 +1,12 @@
 import React from 'react';
 import CourseRow from '../components/CourseRow';
 //import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import CourserService from '../services/CourseService'
 
 export default class CourseTable extends React.Component{
     constructor(props){
         super(props)
+        this.courseService=new CourserService()
         // var state={};var course
         // for(course in this.props.courses){
         // state[String(this.props.courses[course].id)]=true
@@ -17,7 +19,11 @@ export default class CourseTable extends React.Component{
     // handleRowsMount(id){
     //     this.setState({[id]: false})
     // }
+    changeName2=(courseId, course, name)=>{
+        this.courseService.changeCourseTitle(courseId, name,
+            ()=>{course.title=name;this.setState({})})
 
+}
     render(){
         return (
             <div className="table-responsive">
@@ -26,8 +32,8 @@ export default class CourseTable extends React.Component{
                     <tr>
                         <th>Title</th>
                         <th>Owner</th>
-                        <th>Last modified Time</th>
-                        <th></th>
+                        <th><div className="float-left">del</div><div className="float-right">edit</div></th>
+                        <th>modified</th>
                     </tr>
 
                 </thead>
@@ -36,7 +42,8 @@ export default class CourseTable extends React.Component{
                 <CourseRow course={course} removeMe={this.handleRowsMount} key={course.id}/>)} */}
                 { this.props.courses.map((course) =>
 
-                     <CourseRow course={course} key={course.id} deleteCourse={this.props.deleteCourse}/>)
+                     <CourseRow course={course} key={course.id} deleteCourse={this.props.deleteCourse}
+                                changeName2={this.changeName2}/>)
                     //reatc require must have a key, even not used; use whiteboard state instead of courseTable state
                 }
                 </tbody>

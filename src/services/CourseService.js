@@ -1,5 +1,9 @@
 //import courses from './test.json'
 //var courses=[] //only one courses object, so never use = assignment later
+
+//change object in place to avoid unneccessary stacked mounting and props;
+//point to new res object only when on the "top" component
+//so maybe only courses "update" and "delete" can achieve server state
 export default class CourseService{ //singleton
     constructor(){
         const instance = this.constructor.instance;
@@ -11,7 +15,8 @@ export default class CourseService{ //singleton
         this.courses=[]
         this.findAllCourses=this.findAllCourses.bind(this)
         this.deleteCourse=this.deleteCourse.bind(this)
-        this.url="https://still-basin-44392.herokuapp.com/api"
+        this.url="http://localhost:8080/api"
+        //this.url="https://still-basin-44392.herokuapp.com/api"
     }
 
     // checkLogIn = () =>{
@@ -112,7 +117,8 @@ export default class CourseService{ //singleton
     )
 
     deleteCourse(numId, callback){
-        return fetch(this.url+"/user/course"+"/" +String(numId), {method: 'DELETE',
+        console.log(2,numId)
+         fetch(this.url+"/user/course"+"/" +String(numId), {method: 'DELETE',
             headers: new Headers({'Content-type': 'application/json'}),
             credentials: 'include'}).then(function(res){
 
@@ -122,8 +128,22 @@ export default class CourseService{ //singleton
             return res
         }).then(res => res.json()).then(callback)
             .catch(function(error){alert("error, session may have expired, try refresh/ check connection/")
-            ;console.log(error)})
+            console.log(1,error)})
 
-        return this.courses
+}
+
+    changeCourseTitle(numId, title, callback){
+         fetch(this.url+"/user/course"+"/" +String(numId), {method: 'PUT',
+            headers: new Headers({'Content-type': 'application/json'}),
+            body: JSON.stringify({title: title}),
+            credentials: 'include'}).then(function(res){
+
+            if( !(res.ok) ){
+                throw Error(res.statusText)
+            }
+            return res
+        }).then(res => res.json()).then(callback)
+            .catch(function(error){alert("error, session may have expired, try refresh/ check connection/")
+            ;console.log(error)})
     }
 }

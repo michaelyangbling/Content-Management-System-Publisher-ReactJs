@@ -62,7 +62,9 @@ class WhiteBoard extends React.Component{
     )
 
     deleteCourse(course){
+        console.log(3,course)
         this.courseService.deleteCourse(course.id, (res)=>{
+            console.log('wtf')
             this.courseService.courses=res
             this.setState({courses: this.courseService.courses})
         })
@@ -81,6 +83,7 @@ class WhiteBoard extends React.Component{
 
 
     render(){
+        console.log('update')
         //console.log('c',this.state.checkedAuth, isAuth )
       return(
       //Router  contain at most one node, Link/Route should be in Router, so make Router the root
