@@ -22,7 +22,7 @@ export default class CourseService{ //singleton
 
     addModule=(input, courseId, callback)=>{
         //server update
-        return fetch(this.url+"/course/" + courseId+"/module", {method: 'POST',
+        return fetch(this.url+"/course/" + String(courseId)+"/module", {method: 'POST',
             body: JSON.stringify({title: input}),
             headers: new Headers({'Content-type': 'application/json'}),
             credentials: 'include'}).then(function(res){
@@ -31,8 +31,8 @@ export default class CourseService{ //singleton
                 throw Error(res.statusText)
             }
             return res
-        }).then(res => res.json()).then(()=>{
-            this.findCourseById(courseId).modules.push({title: input, lessons: []});
+        }).then(res => res.json()).then((res)=>{
+            this.findCourseById(courseId).modules.push({id: res.id, title: input, lessons: []});
             callback()}
         )
             .catch(function(error){alert("error, session may have expired, try refresh/ check connection/")
@@ -40,14 +40,46 @@ export default class CourseService{ //singleton
     }
 
 
-    deleteModule=(courseId, module, moduleIndex)=>{
+    deleteModule=(courseId, modules, moduleIndex, callback)=>{
         //server update using courseId
-        module.splice(moduleIndex, 1)
-    }
+        return fetch(this.url+"/module/" + String(modules[moduleIndex].id), {method: 'DELETE',
+            headers: new Headers({'Content-type': 'application/json'}),
+            credentials: 'include'}).then(function(res){
 
-    changeModuleTitle=(courseId, moduleIndex, name)=>{
+            if( !(res.ok) ){
+                throw Error(res.statusText)
+            }
+            return res
+        }).then(res => res.json()).then(()=>{
+            modules.splice(moduleIndex, 1);//better use res's id to delete module
+            callback()}
+        )
+            .catch(function(error){alert("error, session may have expired, try refresh/ check connection/")
+            })
+
+
+    }
+//api/modules/{mid}
+    changeModuleTitle=(courseId, moduleIndex, name, callback)=>{
+        const module=this.findCourseById(courseId).modules[moduleIndex]
+        return fetch(this.url+"/module/" + String(module.id), {method: 'PUT',
+            headers: new Headers({'Content-type': 'application/json'}),
+            body: JSON.stringify({title: name}),
+            credentials: 'include'}).then(function(res){
+
+            if( !(res.ok) ){
+                throw Error(res.statusText)
+            }
+            return res
+        }).then(res => res.json()).then(()=>{
+            module.title=name;
+            callback();}
+        )
+            .catch(function(error){alert("error, session may have expired, try refresh/ check connection/")
+            })
+
         //server update using courseId...moduleIndex
-        this.findCourseById(courseId).modules[moduleIndex].title=name
+
     }
 
     addLesson=(input, courseId, moduleIndex)=>{

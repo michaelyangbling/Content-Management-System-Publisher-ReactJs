@@ -7,6 +7,7 @@ export default class ModuleItemList extends Component{
         super(props)
         this.state={edit: false}
         this.courseService=new CourserService()
+        this.name=""
         //only constructed once
         // this.btn="btn-success"
         // if (this.props.index===this.props.selectedIndex)
@@ -36,12 +37,14 @@ export default class ModuleItemList extends Component{
     setName=(event)=>{
         //console.log("changed")
         this.name=event.target.value
+        this.setState({})
 
     }
 
     changeName=()=>{
-        this.courseService.changeModuleTitle(this.props.courseId, this.props.index,this.name)
-        this.setState({edit: false})
+        this.courseService.changeModuleTitle(this.props.courseId, this.props.index,this.name,
+            ()=>this.setState({edit: false}))
+
     }
 
     render(){
@@ -57,7 +60,7 @@ export default class ModuleItemList extends Component{
 
                 {this.state.edit===true?
                     <form>
-                        <input placeholder="change name" onChange={this.setName} className="form-control"/>
+                        <input placeholder="change name" value={this.name} onChange={this.setName} className="form-control"/>
                         <i onClick={this.changeName} className="btn fa fa-check"> </i>
                         <i onClick={this.undoEdit} className="btn float-right fa fa-times"> </i>
                     </form>

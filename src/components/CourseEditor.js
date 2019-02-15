@@ -24,11 +24,12 @@ export default class CourseEditor extends Component{
     }
     deleteModule=(index)=>{
         //console.log("deleting")
-        this.courseService.deleteModule(this.course.id, this.course.modules, index)
-        if (this.course.modules.length>0)
+        this.courseService.deleteModule(this.course.id, this.course.modules, index,
+            ()=>        {if (this.course.modules.length>0)
             this.setState({module: this.course.modules[0], index: 0})
         else
-            this.setState({index: 0})
+            this.setState({index: 0})})
+
     }
     selectModule= (module, index)=>{
         //console.log("selecting")
