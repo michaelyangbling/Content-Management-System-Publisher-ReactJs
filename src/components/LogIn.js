@@ -22,7 +22,7 @@ export default class LogIn extends Component{
     render(){
         return (
             <div>
-                <h1 className="color">Sign In Or Sign Up to use this system</h1>
+                <h1 className="color">Sign In Or Sign Up to use this system ( Use Chrome for best experience)</h1>
                 <form>
                     <div className="form-group row">
                         <label htmlFor="username" className="col-sm-2 col-form-label">
