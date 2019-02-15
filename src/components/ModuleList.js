@@ -7,6 +7,7 @@ export default class ModuleList extends Component{
         this.courseService=new CourserService()
         this.inputChanged=this.inputChanged.bind(this)
         this.state={}
+        this.input=""
     }
     inputChanged(event){
         this.input=event.target.value
@@ -15,11 +16,13 @@ export default class ModuleList extends Component{
 
 
     createModule=()=> {
-        this.courseService.addModule(this.input, this.props.courseId);
-        this.props.selectModule(this.props.modules[this.props.modules.length-1], this.props.modules.length-1) //just make it re-render
+        this.courseService.addModule(this.input, this.props.courseId,()=>
+            this.props.selectModule(this.props.modules[this.props.modules.length-1], this.props.modules.length-1))
+        //this.props.selectModule(this.props.modules[this.props.modules.length-1], this.props.modules.length-1) //just make it re-render
     }
     // We don’t recommend using indexes for keys if the order of items may change. 
     render(){
+        //console.log(this.props.modules)
         //console.log(ModuleList.id.generate())
         return (
             <div style={{margin:"15px"}}>

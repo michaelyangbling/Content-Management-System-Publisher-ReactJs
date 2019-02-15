@@ -15,7 +15,7 @@ export default class CourseEditor extends Component{
         super(props)
         //console.log("remap courseEditor")
         this.courseService=new CourseService()
-        this.course=this.courseService.findCourseById(this.props.courseId)
+        this.course=this.courseService.findCourseById(this.props.courseId) //find locally
         if (this.course.modules.length>0)
           this.state={course: this.course, module: this.course.modules[0], index: 0}//index: cur module index  //should module list control state itself?
         else
