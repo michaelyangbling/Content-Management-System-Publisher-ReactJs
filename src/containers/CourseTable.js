@@ -5,6 +5,7 @@ import CourserService from '../services/CourseService'
 
 export default class CourseTable extends React.Component{
     constructor(props){
+        //console.log('t',new Date().getTime())
         super(props)
         this.courseService=new CourserService()
         // var state={};var course

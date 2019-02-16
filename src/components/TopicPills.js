@@ -26,17 +26,22 @@ export default class TopicPills extends Component{
 
     selectTopic= (topic, index)=>this.setState({topic: topic, index: index})
     createTopic=()=> {
-        this.courseService.addTopic(this.input, this.props.courseId, this.props.moduleIndex, this.props.lessonIndex);
-        this.setState({topic: this.props.topics[this.props.topics.length-1],
+        const callback=()=>this.setState({topic: this.props.topics[this.props.topics.length-1],
             index: this.props.topics.length-1})
+        this.courseService.addTopic(this.input, this.props.courseId, this.props.moduleIndex, this.props.lessonIndex,
+            callback);
+
     }
 
     deleteTopic=(topicIndex)=>{
-        this.courseService.deleteTopic(this.props.courseId, this.props.moduleIndex, this.props.lessonIndex, topicIndex)
-        if (this.props.topics.length>0)
-            this.setState({topic: this.props.topics[0], index: 0})
-        else
-            this.setState({index: 0})
+        const callback=()=> {
+            if (this.props.topics.length > 0)
+                this.setState({topic: this.props.topics[0], index: 0})
+            else
+                this.setState({index: 0})
+        }
+        this.courseService.deleteTopic(this.props.courseId, this.props.moduleIndex, this.props.lessonIndex, topicIndex, callback)
+
     }
     render(){
         //console.log(this.props.topics)

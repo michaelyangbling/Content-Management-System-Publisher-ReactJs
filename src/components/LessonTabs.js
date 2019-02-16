@@ -18,11 +18,12 @@ export default class LessonTabs extends Component{
     selectLesson= (lesson, index)=>this.setState({lesson: lesson, index: index})
 
     deleteLesson=(index)=>{
-        this.courseService.deleteLesson(this.props.courseId, this.props.moduleIndex, index)
-        if (this.props.lessons.length>0)
+        const callback=()=>{if (this.props.lessons.length>0)
             this.setState({lesson: this.props.lessons[0], index: 0})
         else
-            this.setState({index: 0})
+            this.setState({index: 0})}
+        this.courseService.deleteLesson(this.props.courseId, this.props.moduleIndex, index, callback)
+
     }
 
     inputChanged(event){
@@ -32,8 +33,9 @@ export default class LessonTabs extends Component{
 
 
     createLesson=()=> {
-        this.courseService.addLesson(this.input, this.props.courseId, this.props.moduleIndex);
-        this.selectLesson(this.props.lessons[this.props.lessons.length-1], this.props.lessons.length-1)
+        const callback=()=>this.selectLesson(this.props.lessons[this.props.lessons.length-1], this.props.lessons.length-1)
+        this.courseService.addLesson(this.input, this.props.courseId, this.props.moduleIndex, callback);
+
         //this.setState({}) //just make it re-render
     }
     componentWillReceiveProps(nextProps) { //seems hard to avoid this? to "re-inherit" module

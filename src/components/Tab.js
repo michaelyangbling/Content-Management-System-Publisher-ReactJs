@@ -1,8 +1,13 @@
 import React,{Component} from 'react'
+import CourserService from '../services/CourseService'
+
 export default class Tab extends Component{
     constructor(props){
         super(props)
         this.state={edit:false}
+        this.name=""
+        this.courseService=new CourserService()
+
     }
     selectLesson=()=>{
         this.props.selectLesson(this.props.lesson, this.props.index)
@@ -23,16 +28,19 @@ export default class Tab extends Component{
     setName=(event)=>{
         //console.log("changed")
         this.name=event.target.value
+        this.setState({})
 
     }
 
     changeName=()=>{
         //service change
-        //this.courseService.changeModuleTitle(this.props.courseId, this.props.index,this.name)
-        this.props.lesson.title=this.name
-        this.setState({edit: false})
+        const callback=()=>{this.props.lesson.title=this.name;
+            this.setState({edit: false})} //should callback be set in courseService?
+        this.courseService.changeLessonTitle(this.props.lesson.id, this.name,callback)
+
     }
     render(){
+        //console.log('r')
     
         return (
         <li className="nav-item">
@@ -43,7 +51,7 @@ export default class Tab extends Component{
             </a>
             {this.state.edit===true?
                 <form>
-                    <input placeholder="change name" onChange={this.setName} className="form-control"/>
+                    <input placeholder="change name" onChange={this.setName} value={this.name} className="form-control"/>
                     <i onClick={this.changeName} className="btn fa fa-check"> </i>
                     <i onClick={this.undoEdit} className="btn float-right fa fa-times"> </i>
                 </form>

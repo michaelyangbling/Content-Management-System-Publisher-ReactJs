@@ -1,9 +1,13 @@
 import React,{Component} from 'react'
+import CourseService from '../services/CourseService.js'
 export default class Pill extends Component{
     constructor(props){
         //console.log("remap pill")
         super(props)
         this.state={edit:false}
+        this.name=""
+        this.courseService=new CourseService()
+
     }
 
     selectTopic=()=>{this.props.selectTopic(this.props.topic, this.props.index)}
@@ -22,14 +26,15 @@ export default class Pill extends Component{
     setName=(event)=>{
         //console.log("changed")
         this.name=event.target.value
-
+        this.setState({})
     }
 
     changeName=()=> {
         //service change
-        //this.courseService.changeModuleTitle(this.props.courseId, this.props.index,this.name)
-        this.props.topic.title = this.name
-        this.setState({edit: false})
+        const callback=()=>{ this.props.topic.title = this.name
+            this.setState({edit: false}) }
+        this.courseService.changeTopicTitle(this.props.topic.id, this.name, callback)
+
     }
 
     render(){
@@ -42,7 +47,7 @@ export default class Pill extends Component{
                 </a>
                 {this.state.edit===true?
                     <form>
-                        <input placeholder="change name" onChange={this.setName} className="form-control"/>
+                        <input placeholder="change name" onChange={this.setName} value={this.name} className="form-control"/>
                         <i onClick={this.changeName} className="btn fa fa-check"> </i>
                         <i onClick={this.undoEdit} className="btn float-right fa fa-times"> </i>
                     </form>

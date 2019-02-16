@@ -5,6 +5,7 @@ import CourserService from '../services/CourseService'
 // const CourseGrid = () =>
 class CourseGrid extends React.Component{
     constructor(props){
+        //console.log(new Date().getTime())
       super(props)
         this.courseService=new CourserService()
     }
