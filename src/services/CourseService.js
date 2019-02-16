@@ -17,8 +17,8 @@ export default class CourseService{ //singleton
         this.courses=[]
         this.findAllCourses=this.findAllCourses.bind(this)
         this.deleteCourse=this.deleteCourse.bind(this)
-        //this.url="http://localhost:8080/api"
-        this.url="https://still-basin-44392.herokuapp.com/api"
+        this.url="http://localhost:8080/api"
+        //this.url="https://still-basin-44392.herokuapp.com/api"
     }
 
     addModule=(input, courseId, callback)=>{
@@ -60,6 +60,30 @@ export default class CourseService{ //singleton
 
 
     }
+
+    //api/modules/{mid}
+    changeModuleTitle=(courseId, moduleIndex, name, callback)=>{
+        const module=this.findCourseById(courseId).modules[moduleIndex]
+        return fetch(this.url+"/module/" + String(module.id), {method: 'PUT',
+            headers: new Headers({'Content-type': 'application/json'}),
+            body: JSON.stringify({title: name}),
+            credentials: 'include'}).then(function(res){
+
+            if( !(res.ok) ){
+                throw Error(res.statusText)
+            }
+            return res
+        }).then(res => res.json()).then(()=>{
+            module.title=name;
+            callback();}
+        )
+            .catch(function(error){alert("error, session may have expired, try refresh/ check connection/")
+            })
+
+        //server update using courseId...moduleIndex
+
+    }
+
 //api/lesson/{lid}
     changeLessonTitle=(lid, name, callback)=>{
         return fetch(this.url+"/lesson/" + String(lid), {method: 'PUT',
