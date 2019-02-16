@@ -1,5 +1,4 @@
-https://zhongheng-yang-react.herokuapp.com/course/grid
-
+https://michael-yang-react.herokuapp.com/course
 
 React web application, now support getting and deleting courses in frontEnd, js service not yet connected to back end
 

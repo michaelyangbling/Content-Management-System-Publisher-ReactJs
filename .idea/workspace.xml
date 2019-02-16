@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e4b2f55d-1448-4f91-898f-785e2e18d359" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/LessonTabs.js" afterPath="$PROJECT_DIR$/src/components/LessonTabs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Pill.js" afterPath="$PROJECT_DIR$/src/components/Pill.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Tab.js" afterPath="$PROJECT_DIR$/src/components/Tab.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/TopicPills.js" afterPath="$PROJECT_DIR$/src/components/TopicPills.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/CourseGrid.js" afterPath="$PROJECT_DIR$/src/containers/CourseGrid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/CourseTable.js" afterPath="$PROJECT_DIR$/src/containers/CourseTable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/CourseService.js" afterPath="$PROJECT_DIR$/src/services/CourseService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/UserService.js" afterPath="$PROJECT_DIR$/src/services/UserService.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -75,11 +68,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserService.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserService.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/services/UserService.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="4" column="14" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="47" lean-forward="false" selection-start-line="0" selection-start-column="47" selection-end-line="0" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -126,7 +129,6 @@
         <option value="$PROJECT_DIR$/src/components/ListWidget.js" />
         <option value="$PROJECT_DIR$/src/components/WidgetComponent.js" />
         <option value="$PROJECT_DIR$/src/components/LinkWidget.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/services/test.json" />
         <option value="$PROJECT_DIR$/src/components/Profile.js" />
         <option value="$PROJECT_DIR$/src/components/SignUp.js" />
@@ -145,6 +147,7 @@
         <option value="$PROJECT_DIR$/src/components/Pill.js" />
         <option value="$PROJECT_DIR$/src/services/CourseService.js" />
         <option value="$PROJECT_DIR$/src/services/UserService.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -298,12 +301,12 @@
       <workItem from="1548911792228" duration="39162000" />
       <workItem from="1549132495496" duration="30000" />
       <workItem from="1549314082437" duration="140149000" />
-      <workItem from="1550267636450" duration="8221000" />
+      <workItem from="1550267636450" duration="8496000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="187562000" />
+    <option name="totallyTimeSpent" value="187837000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -362,6 +365,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -411,6 +415,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -600,13 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="57" lean-forward="true" selection-start-line="7" selection-start-column="57" selection-end-line="7" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/SignUp.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="29">
@@ -762,6 +760,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="14" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="47" lean-forward="false" selection-start-line="0" selection-start-column="47" selection-end-line="0" selection-end-column="47" />
           <folding />
         </state>
       </provider>
