@@ -4,6 +4,10 @@ import WidgetList from '../components/WidgetList'
 import { createStore } from 'redux'
 import {Provider} from 'react-redux'
 import WidgetReducer from '../reducers/WidgetReducer.js'
+
+import WidgetService from "../services/WidgetService"
+const widgetService = new WidgetService();
+
 const someStore =
     createStore(WidgetReducer)
 
@@ -13,6 +17,15 @@ const stateToPropertyMapper = state => ({
 })
 
 const dispatchToPropertyMapper = dispatch => ({
+    save: (tid, widgets)=>{
+        widgetService.save(tid, widgets , ()=>{
+            dispatch({
+                type:'SAVE_WIDGET'
+            });
+            alert("this topic's widgets saved");
+        })
+    },
+
     loadWidget: widgets => {
         //console.log("lodaing widgets")
         dispatch({
@@ -54,9 +67,9 @@ const WidgetListContainer = connect(
 )(WidgetList)
 // reducer-state-store-provider-container-component
 
-const App = ({widgets}) => (
+const App = ({widgets, tid}) => (
     <Provider store={someStore}>
-        <WidgetListContainer curWidgets={widgets}/>
+        <WidgetListContainer curWidgets={widgets} tid={tid}/>
     </Provider>)
 
 export default App

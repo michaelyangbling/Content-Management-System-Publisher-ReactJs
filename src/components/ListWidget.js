@@ -1,6 +1,7 @@
 import React from 'react'
 
 const ListWidget = ({updateWidget, widgets, widget, preview}) =>{
+    console.log("lstcool", widget)
     return (
         <div>
             {!preview &&
@@ -15,7 +16,7 @@ const ListWidget = ({updateWidget, widgets, widget, preview}) =>{
                 <select className="form-control"  onChange={event => { //default is unordered
                                                 widget.list = event.target.value
                                                 updateWidget(widget, widgets)
-                     }} value={'list' in widget ? widget.list : 'ul'}>
+                     }} value={ !( widget.list===null || (typeof widget.list === 'undefined') ) ? widget.list : 'ul'}>
                     <option value="ol">ordered list</option>
                     <option value="ul">unordered list</option>
                 </select>
@@ -23,18 +24,22 @@ const ListWidget = ({updateWidget, widgets, widget, preview}) =>{
             </div>
 
             }
-            { !('list'  in widget) && //default type is unordered, default item is undefined
-            <ul>
-                {'items' in widget ? widget.items.split('\n').map(item=><li>{item}</li>) : null}
-            </ul>}
-            {widget.list=="ul" &&
-                <ul>
-                    {'items' in widget ? widget.items.split('\n').map(item=><li>{item}</li>) : null}
-                </ul>}
-            {widget.list=="ol" &&
-            <ol>
-                {'items' in widget ? widget.items.split('\n').map(item=><li>{item}</li>) : null}
-            </ol>}
+
+            {
+                !( widget.item===null || (typeof widget.item === 'undefined') ) 
+                &&  
+                        ( widget.list===null || (typeof widget.list === 'undefined') ) && //default type is unordered, default item is undefined or null
+                        <ul>
+                            {'items' in widget ? widget.items.split('\n').map(item=><li>{item}</li>) : null}
+                        </ul>}
+                        {widget.list==="ul" &&
+                            <ul>
+                                {'items' in widget ? widget.items.split('\n').map(item=><li>{item}</li>) : null}
+                            </ul>}
+                        {widget.list==="ol" &&
+                        <ol>
+                            {'items' in widget ? widget.items.split('\n').map(item=><li>{item}</li>) : null}
+                        </ol>}
 
         </div>
 

@@ -1,6 +1,7 @@
 import React from 'react'
 
 const ImageWidget = ({updateWidget, widgets, widget, preview}) =>{
+    console.log("imgcool", widget.src)
     //console.log('image',widget)
     return (
         <div>

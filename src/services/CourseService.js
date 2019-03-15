@@ -1,10 +1,13 @@
+
 //import courses from './test.json'
 //var courses=[] //only one courses object, so never use = assignment later
 
+//only one res object? singleton?
 //change object in place to avoid unneccessary stacked mounting and props;
 //point to new res object only when on the "top" component
 //so maybe only courses "update" and "delete" can achieve server state
 //use id to do server update, ony delete can be influenced by slow fetch and ops on same age, which can be avoided by handling
+import port from "./port.js"
 export default class CourseService{ //singleton
     constructor(){
         const instance = this.constructor.instance;
@@ -17,8 +20,8 @@ export default class CourseService{ //singleton
         this.courses=[]
         this.findAllCourses=this.findAllCourses.bind(this)
         this.deleteCourse=this.deleteCourse.bind(this)
-        //this.url="http://localhost:8080/api"
-        this.url="https://still-basin-44392.herokuapp.com/api"
+        this.url=port
+        //this.url="https://still-basin-44392.herokuapp.com/api"
     }
 
     addModule=(input, courseId, callback)=>{
@@ -55,7 +58,8 @@ export default class CourseService{ //singleton
             modules.splice(moduleIndex, 1);//better use res's id to delete module
             callback()}
         )
-            .catch(function(error){alert("error, session may have expired, try refresh/ check connection/")
+            .catch(function(error){
+                alert("you must delete child lessons, topics, and widgets first/ or session expired")
             })
 
 
@@ -145,7 +149,8 @@ export default class CourseService{ //singleton
             callback();//better use res's id to delete module
             callback2();}
         )
-            .catch(function(error){alert("error, session may have expired, try refresh/ check connection/"); console.log(error)
+            .catch(function(error){
+                alert("you must delete child topics and widgets first/ or session expired")
             })
     }
 
@@ -189,7 +194,8 @@ export default class CourseService{ //singleton
             callback();//better use res's id to delete module
             callback2();}
         )
-            .catch(function(error){alert("error, session may have expired, try refresh/ check connection/"); console.log(error)
+            .catch(function(error){
+                alert("you must delete child widgets first/ or session expired"); console.log(error)
             })
     }
 
@@ -256,7 +262,8 @@ export default class CourseService{ //singleton
             }
             return res
         }).then(res => res.json()).then(callback)
-            .catch(function(error){alert("error, session may have expired, try refresh/ check connection/")
+            .catch(function(error){
+                alert("you must delete child modules, lessons, topics, and widgets first/ or session expired")
             console.log(1,error)})
 
 }

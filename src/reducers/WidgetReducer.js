@@ -1,3 +1,5 @@
+
+
 const defaultWidgets =
     {
         widgets: [
@@ -32,7 +34,9 @@ const WidgetReducer = (state=defaultWidgets, action) => {//state initial is unde
         case 'SAVE_WIDGET':
             // replace the old widget with the new widget
             //course service and server update
+            
             return {
+                
             }
         case 'DELETE_WIDGET':
             console.log("me",action.widgets)

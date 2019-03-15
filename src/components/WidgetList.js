@@ -1,6 +1,6 @@
 import React from 'react'
 import WidgetComponent from './WidgetComponent'
-const WidgetList = ({togglePreview, curWidgets, addWidget, deleteWidget, updateWidget,preview}) => {
+const WidgetList = ({togglePreview, curWidgets, tid, addWidget, deleteWidget, updateWidget,preview, save}) => {
     // Cannot update during an existing state transition (such as within `render`), rendered 2 times?
     //console.log("rendered")
     //loadWidget(curWidgets)//state not set for 1st time? then set for second time?
@@ -10,7 +10,7 @@ const WidgetList = ({togglePreview, curWidgets, addWidget, deleteWidget, updateW
     <div>
         <div className="row" style={{margin:"5px"}}>
             <div className="col-10">
-                <button type="button" name="saveBtn" className="float-right btn btn-success">save</button>
+                <button type="button" onClick={ ()=>{save(tid, curWidgets)} } name="saveBtn" className="float-right btn btn-success">save</button>
             </div>
             <div className="col-2">
                 <b>Preview</b>

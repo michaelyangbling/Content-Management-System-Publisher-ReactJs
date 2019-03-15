@@ -65,7 +65,8 @@ export default class TopicPills extends Component{
                 </ul>
 
                 {/*//WidgetList static for now*/}
-                {(this.props.topics.length>0)?<App widgets={this.state.topic.widgets}/> : null}
+                {(this.props.topics.length>0)?<App widgets={this.state.topic.widgets} tid={this.state
+                    .topic.id}/> : null}
             </div>
         )
     }
