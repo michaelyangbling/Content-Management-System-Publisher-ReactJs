@@ -7,10 +7,11 @@ export default class ModuleList extends Component{
         this.courseService=new CourserService()
         this.inputChanged=this.inputChanged.bind(this)
         this.state={}
-        this.input=""
+        this.input="new module"//de
     }
     inputChanged(event){
         this.input=event.target.value
+        this.setState({})
     }
 
 
@@ -37,7 +38,8 @@ export default class ModuleList extends Component{
 
 
                 </ul>
-                <input placeholder="new module title" className="form-control" onChange={this.inputChanged}/>
+                <input placeholder="new module title" className="form-control" onChange={this.inputChanged}
+                value={this.input}/>
                 <div style={{margin:"3px"}}>
                 <button className="btn-primary btn form-control"  onClick={this.createModule}>
                     {/*Add Module/Week &nbsp;*/}

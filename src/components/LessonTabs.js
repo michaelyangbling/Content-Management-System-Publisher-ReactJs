@@ -13,6 +13,7 @@ export default class LessonTabs extends Component{
           this.state={index: 0}//better set lesson: null
         this.courseService=new CourserService()
         this.inputChanged=this.inputChanged.bind(this)
+        this.input = "new lesson of module"
     }
     // https://stackoverflow.com/questions/48226268/calling-setstate-in-react-from-render-method
     selectLesson= (lesson, index)=>this.setState({lesson: lesson, index: index})
@@ -27,7 +28,8 @@ export default class LessonTabs extends Component{
     }
 
     inputChanged(event){
-        this.input=event.target.value
+        this.input=event.target.value;
+        this.setState({})
     }
 
 
@@ -59,7 +61,8 @@ export default class LessonTabs extends Component{
                     ) }
                   <div style={{margin:"3px"}}>
                       {/*//onChange is triggered on render?*/}
-                      <input style={{margin:"1px"}} placeholder="new lesson title" className="form-control" onChange={this.inputChanged}/>
+                      <input style={{margin:"1px"}} placeholder="new lesson title" className="form-control" onChange={this.inputChanged}
+                      value={this.input}/>
                       <button className="btn-info btn form-control"  onClick={this.createLesson}>
                           {/*Add Module/Week &nbsp;*/}
                           <i className="fa fa-plus fa-2x"></i>

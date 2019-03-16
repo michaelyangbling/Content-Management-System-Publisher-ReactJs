@@ -67,9 +67,9 @@ const WidgetListContainer = connect(
 )(WidgetList)
 // reducer-state-store-provider-container-component
 
-const App = ({widgets, tid}) => (
+const App = ({widgets, tid, tname}) => (
     <Provider store={someStore}>
-        <WidgetListContainer curWidgets={widgets} tid={tid}/>
+        <WidgetListContainer curWidgets={widgets} tid={tid} tname={tname}/>
     </Provider>)
 
 export default App

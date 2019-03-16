@@ -11,6 +11,7 @@ export default class TopicPills extends Component{
         else
             this.state={index: 0}
         this.courseService=new CourseService()
+        this.input="new topic of lesson"//default input
     }
     componentWillReceiveProps(nextProps) { //seems hard to avoid this? to "re-inherit" module
         if (nextProps.topics.length>0)
@@ -21,6 +22,7 @@ export default class TopicPills extends Component{
 
     inputChanged=(event)=>{
         this.input=event.target.value
+        this.setState({})
     }
 //need a selectTopic later
 
@@ -56,7 +58,8 @@ export default class TopicPills extends Component{
 
                     <div style={{margin:"3px"}}>
 
-                        <input style={{margin:"1px"}} placeholder="new topic title" className="form-control" onChange={this.inputChanged}/>
+                        <input style={{margin:"1px"}} placeholder="new topic title" className="form-control" onChange={this.inputChanged}
+                        value={this.input}/>
                         <button className="btn-secondary btn form-control"  onClick={this.createTopic}>
                             {/*Add Module/Week &nbsp;*/}
                             <i className="fa fa-plus fa-2x"></i>
@@ -66,7 +69,7 @@ export default class TopicPills extends Component{
 
                 {/*//WidgetList static for now*/}
                 {(this.props.topics.length>0)?<App widgets={this.state.topic.widgets} tid={this.state
-                    .topic.id}/> : null}
+                    .topic.id} tname={this.state.topic.title} /> : null}
             </div>
         )
     }

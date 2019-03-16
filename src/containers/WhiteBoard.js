@@ -23,7 +23,7 @@ class WhiteBoard extends React.Component{
         this.courseService = new CourseService()
         this.userService = new UserService()
         this.state={checkedAuth:false}
-        this.title=""
+        this.title="new course name"
         this.deleteCourse=this.deleteCourse.bind(this)
     }
 

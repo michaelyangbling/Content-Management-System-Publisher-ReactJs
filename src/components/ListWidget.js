@@ -16,7 +16,7 @@ const ListWidget = ({updateWidget, widgets, widget, preview}) =>{
                 <select className="form-control"  onChange={event => { //default is unordered
                                                 widget.list = event.target.value
                                                 updateWidget(widget, widgets)
-                     }} value={ !( widget.list===null || (typeof widget.list === 'undefined') ) ? widget.list : 'ul'}>
+                     }} value={widget.list}>
                     <option value="ol">ordered list</option>
                     <option value="ul">unordered list</option>
                 </select>
@@ -24,22 +24,45 @@ const ListWidget = ({updateWidget, widgets, widget, preview}) =>{
             </div>
 
             }
-
-            {
-                !( widget.item===null || (typeof widget.item === 'undefined') ) 
-                &&  
-                        ( widget.list===null || (typeof widget.list === 'undefined') ) && //default type is unordered, default item is undefined or null
-                        <ul>
-                            {'items' in widget ? widget.items.split('\n').map(item=><li>{item}</li>) : null}
-                        </ul>}
-                        {widget.list==="ul" &&
+                                        {widget.list==="ul" &&
                             <ul>
-                                {'items' in widget ? widget.items.split('\n').map(item=><li>{item}</li>) : null}
-                            </ul>}
-                        {widget.list==="ol" &&
-                        <ol>
+                                {widget.items.split('\n').map(item=><li>{item}</li>) }
+                            </ul>
+                            }
+
+                            {widget.list==="ol" &&
+                            <ol>
+                                {widget.items.split('\n').map(item=><li>{item}</li>)}
+                            </ol>
+                            }
+            {/* {
+                !( (widget.item===null) || (typeof widget.item === 'undefined') ) 
+                &&  
+                        
+                        <div>    
+                            wtf
+                            {( widget.list===null || (typeof widget.list === 'undefined') ) && //default type is unordered, default item is undefined or null
+                            <ul>
+                                wtf1
                             {'items' in widget ? widget.items.split('\n').map(item=><li>{item}</li>) : null}
-                        </ol>}
+                            </ul>}
+
+                        
+                            {widget.list==="ul" &&
+                            <ul>
+                                wtf2
+                                {'items' in widget ? widget.items.split('\n').map(item=><li>{item}</li>) : null}
+                            </ul>
+                            }
+
+                            {widget.list==="ol" &&
+                            <ol>
+                                wtf3
+                                {'items' in widget ? widget.items.split('\n').map(item=><li>{item}</li>) : null}
+                            </ol>
+                            }
+                        </div>
+            } */}
 
         </div>
 
