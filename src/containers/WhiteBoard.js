@@ -122,7 +122,7 @@ class WhiteBoard extends React.Component{
                         <div style={{paddingTop: 80 + "px"}}>
                             <nav className="navbar navbar-expand-sm fixed-top navbar-dark bg-info">
                                 <a className="navbar-brand" href="#">
-                                    Course Manager</a>
+                                    Content publisher</a>
                                 <Link to="/course/table" style={{color: "white"}}><b>Table-View&nbsp;&nbsp;</b></Link>
                                 <i></i>
                                 <Link to="/course/grid" style={{color: "white"}}><b>Grid-View </b></Link>
@@ -142,7 +142,7 @@ class WhiteBoard extends React.Component{
                                 <div className="collapse navbar-collapse" id="MyNavbarNavDropdown">
                                     <ul className="navbar-nav">
                                         <li className="nav-item active">
-                                            <a className="nav-link" href="#">Top</a>
+                                            <a className="nav-link" href="https://client-view-angular.herokuapp.com/course">client view</a>
                                         </li>
 
                                         <li className="nav-item active">
