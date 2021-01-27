@@ -1,4 +1,4 @@
-our heroku website may be unavailable since heroku free trial expires
+heroku website may be unavailable since heroku free trial expires
 
 
 https://michael-yang-react.herokuapp.com/course
