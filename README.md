@@ -1,5 +1,7 @@
 Course Management System Web Application
+
 •	Developed a mobile-friendly web application by React.js and Redux etc. for frontend, Spring and MySQL for backend, where users can register, login, create, read, update, delete their hierarchical courses, modules, topics and widgets etc. 		( Note: use chrome, refresh to wake up heroku server in case of no response )
+
 •	Login with username “a” and password “a” to see how it works
 
 
